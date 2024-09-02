@@ -12,48 +12,7 @@ const fadeIn = {
 };
 
 export default function ContactPage() {
-  {/* Replace unescaped characters in FAQData */ }
-  const FAQData = [
-    {
-      question: "What are some random questions to ask?",
-      answer: "Some random questions could be: &apos;If you could have dinner with any historical figure, who would it be?&apos;, &apos;What&apos;s the most unusual thing you&apos;ve ever eaten?&apos;, or &apos;If you could instantly become an expert in one subject, what would it be?&apos;"
-    },
-    {
-      question: "Do you include common questions?",
-      answer: "Yes, we include a mix of common and unique questions to cater to a wide range of interests and curiosities."
-    },
-    {
-      question: "Can I use this for 21 questions?",
-      answer: "Absolutely! You can select any number of questions from our list to play games like 21 questions or to spark interesting conversations."
-    },
-    {
-      question: "Are these questions for girls or for boys?",
-      answer: "Our questions are designed to be inclusive and suitable for everyone, regardless of gender."
-    },
-    {
-      question: "What do you wish you had more talent doing?",
-      answer: "This is actually one of our questions! It&apos;s a great way to learn about someone&apos;s aspirations and interests."
-    }
-  ];
-
-
-  function FAQItem({ question, answer }: { question: string; answer: string }) {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-      <div className="border-b border-gray-200 py-4">
-        <button
-          className="flex justify-between items-center w-full text-left"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <span className="font-medium">{question}</span>
-          <span className="text-2xl">{isOpen ? '-' : '+'}</span>
-        </button>
-        {isOpen && <p className="mt-2 text-gray-600">{answer}</p>}
-      </div>
-    );
-  }
-
+ 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -230,23 +189,6 @@ export default function ContactPage() {
           </iframe>
         </div>
       </section>
-
-      {/* FAQ Section */}
-      {/* <section className="bg-gray-100 dark:bg-gray-900 py-10 sm:py-20 px-4 min-w-max mx-auto">
-        <h2 className={`${syne.className} text-3xl md:text-4xl font-bold mb-6 text-center text-gray-900 dark:text-white`}>
-          Frequently Asked Questions
-        </h2>
-        <div className="max-w-2xl mx-auto mb-12">
-          <p className="text-sm md:text-base text-center text-gray-600 dark:text-gray-300">
-            Answered all frequently asked questions. Still confused? Feel free to contact us.
-          </p>
-        </div>
-        <div className="max-w-3xl mx-auto">
-          {FAQData.map((item, index) => (
-            <FAQItem key={index} question={item.question} answer={item.answer} />
-          ))}
-        </div>
-      </section> */}
     </>
   );
 }
