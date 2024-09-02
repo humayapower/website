@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://nextjs.org/static/images/nextjs-logo.png" alt="Next.js Logo" width="200"/>
+  <img src="Humaya Bird Logo.png" alt="Humaya Logo" width="200"/>
   <h1>Humaya Power</h1>
   <p>A cutting-edge web application built with Next.js</p>
   
