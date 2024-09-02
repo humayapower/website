@@ -184,7 +184,6 @@ export default function ContactPage() {
             height="450"
             style={{ border: 0 }}
             allowFullScreen={false}
-            loading="lazy"
             referrerPolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
