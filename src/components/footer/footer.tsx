@@ -3,31 +3,31 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 
-const FooterItem = ({ text, link }: { text: string; link: string }) => {
-  return (
-    <li>
-      <Link href={link}>{text}</Link>
-    </li>
-  );
-};
+// const FooterItem = ({ text, link }: { text: string; link: string }) => {
+//   return (
+//     <li>
+//       <Link href={link}>{text}</Link>
+//     </li>
+//   );
+// };
 
-const footerItems = [
-  {
-    id: 1,
-    text: "Term of services",
-    link: "#",
-  },
-  {
-    id: 2,
-    text: "Company",
-    link: "#",
-  },
-  {
-    id: 3,
-    text: "Portfolio",
-    link: "#",
-  },
-];
+// const footerItems = [
+//   {
+//     id: 1,
+//     text: "Term of services",
+//     link: "#",
+//   },
+//   {
+//     id: 2,
+//     text: "Company",
+//     link: "#",
+//   },
+//   {
+//     id: 3,
+//     text: "Portfolio",
+//     link: "#",
+//   },
+// ];
 
 const FooterBlock = () => {
   const [footerClass, setFooterClass] = useState("bg-transparent");
@@ -69,7 +69,7 @@ const FooterBlock = () => {
         <p className="mb-4">
           Copyright © {new Date().getFullYear()} - All rights reserved by{" "}
           <br className="md:hidden" />{" "}
-          <span className="text-orange-500 md:hover:text-orange-500 md:text-white">
+          <span className="text-white hover:text-orange-500 md:hover:text-orange-500 md:text-white">
             Humaya Power
           </span>
         </p>
@@ -79,14 +79,30 @@ const FooterBlock = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaInstagram className="text-white hover:text-gray-400" size={24} />
+            <FaInstagram className="text-white hover:text-rose-500" size={24} />
           </Link>
           <Link
             href="https://www.linkedin.com/company/humaya-power/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaLinkedin className="text-white hover:text-gray-400" size={24} />
+            <FaLinkedin className="text-white hover:text-blue-500" size={24} />
+          </Link>
+          <Link
+            href="/T&C"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-orange-500 md:hover:text-orange-500 md:text-white"
+          >
+            Terms & Conditions
+          </Link>
+          <Link
+            href="/policies"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-orange-500 md:hover:text-orange-500 md:text-white"
+          >
+            Policies
           </Link>
         </div>
       </aside>

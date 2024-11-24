@@ -37,11 +37,11 @@ const Page = () => {
 
       {/* Overlay Gradient */}
       {!isNavbarOpen && (
-        <div className="absolute inset-0 top-1/2 bg-gradient-to-t from-slate-900 to-transparent"></div>
+        <div className="absolute inset-0 top-1/2 bg-gradient-to-t sm:from-slate-900 from-[#2A4A59] to-transparent md:from-slate-900"></div>
       )}
 
       {/* Sustainability Section */}
-      <section className="bg-slate-900 w-full py-20 md:py-32 px-5 md:px-12 lg:px-28">
+      <section className="bg-[#2A4A59] sm:bg-slate-900 w-full py-20 md:py-32 px-5 md:px-12 lg:px-28">
         <div className="mx-auto w-full px-5 sm:px-10 md:px-12 lg:px-5 relative z-10">
           <div className="text-center flex flex-col items-center space-y-8 md:space-y-10">
             <h2 className={`${syne.className} text-4xl md:text-5xl text-white font-bold`}>

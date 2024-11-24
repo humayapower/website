@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { montserrat, nunito, syne } from '../font';
+import Link from 'next/link';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -81,7 +82,14 @@ export default function ContactPage() {
                   <p><FaPhoneAlt className="inline-block mr-2 text-orange-500" /> (+91) 729-1000-560</p>
                 </div>
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                  <p><FaEnvelope className="inline-block mr-2 text-orange-500" /> info@humayapower.in</p>
+                  <p>
+                    <Link href={`mailto:info@humayapower.in`}>
+                      <p>
+                        <FaEnvelope className="inline-block mr-2 text-orange-500" />
+                        info@humayapower.in
+                      </p>
+                    </Link>
+                  </p>
                 </div>
               </motion.div>
             </div>
