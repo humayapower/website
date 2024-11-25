@@ -119,7 +119,7 @@ const Page = () => {
             <h2 className="text-2xl sm:text-3xl font-semibold text-orange-600 mb-4">Customized Battery Packs</h2>
             <p className="text-gray-700 mb-4">Customized battery packs with custom power, voltage, output, connection type, and cell type, for every need, from transport to personal use.</p>
             <p className="text-gray-700 mb-4 font-bold hover:text-orange-500 transition">Contact us for a quote</p>
-            <button className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">Explore Rentals</button>
+            <Link href="/contact" className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">Send a Quote</Link>
           </div>
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
             <div className="flex flex-col sm:flex-row gap-4">
