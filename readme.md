@@ -26,7 +26,7 @@ Humaya Power is at the forefront of energy transformation, specializing in high-
 - **Type Safety**: TypeScript
 
 <div align="center">
-  <img src="HumayaBirdLogo.png" alt="Humaya Logo" width="200"/>
+  <img src="/public/HumayaBirdLogo.png" alt="Humaya Logo" width="200"/>
   <h1>Humaya Power</h1>
   <p>A cutting-edge web application built with Next.js</p>
   
