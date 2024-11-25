@@ -60,7 +60,7 @@ const Page = () => {
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
             <h2 className="text-2xl sm:text-3xl font-semibold text-orange-600 mb-4">Rental Batteries for EV Drivers</h2>
             <p className="text-gray-700 mb-4">Affordable rental battery solutions for electric vehicle drivers, ensuring uninterrupted journeys.</p>
-            <p className="text-gray-700 mb-4 font-bold">₹3000/month</p>
+            <p className="text-gray-700 mb-4 font-bold">₹3,000/month</p>
             <button className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">Explore Rentals</button>
           </div>
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
@@ -79,7 +79,7 @@ const Page = () => {
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
             <h2 className="text-2xl sm:text-3xl font-semibold text-orange-600 mb-4">Li-ion EV Batteries</h2>
             <p className="text-gray-700 mb-4">High-performance Li-ion batteries for electric vehicles, designed for maximum efficiency and durability.</p>
-            <p className="text-gray-700 mb-4 font-bold">₹30000</p>
+            <p className="text-gray-700 mb-4 font-bold">₹30,000</p>
             <button className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">Discover EV Batteries</button>
           </div>
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
@@ -98,7 +98,7 @@ const Page = () => {
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
             <h2 className="text-2xl sm:text-3xl font-semibold text-orange-600 mb-4">Li-ion Storage Batteries</h2>
             <p className="text-gray-700 mb-4">Reliable and sustainable energy storage solutions for both residential and commercial use.</p>
-            <p className="text-gray-700 mb-4 font-bold">₹12000</p>
+            <p className="text-gray-700 mb-4 font-bold">₹12,000</p>
 
             <button className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">View Storage Options</button>
           </div>
