@@ -1,4 +1,6 @@
-<img src="/public/HumayaBirdLogo.png" alt="Humaya Logo" width="200" align = "center"/>
+<div align="center">
+  <img src="/public/HumayaBirdLogo.png" alt="Humaya Logo" width="200"/>
+</div>
 
 # Humaya Power - Revolutionizing Energy Solutions 🔋
 
@@ -26,9 +28,11 @@ Humaya Power is at the forefront of energy transformation, specializing in high-
 - **Icons**: React Icons
 - **Type Safety**: TypeScript
 
+ <div align="center">
   [![Next.js](https://img.shields.io/badge/Next.js-13.0+-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
   [![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-4.5+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+ </div>
 
 <!-- <div align="center">
   <img src="/public/HumayaBirdLogo.png" alt="Humaya Logo" width="200"/>
