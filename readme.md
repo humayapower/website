@@ -1,6 +1,6 @@
-<div align="center">
+<!-- <div align="center">
   <img src="/public/HumayaBirdLogo.png" alt="Humaya Logo" width="200"/>
-</div>
+</div> -->
 
 # Humaya Power - Revolutionizing Energy Solutions 🔋
 
