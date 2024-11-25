@@ -1,5 +1,32 @@
+
+# Humaya Power - Revolutionizing Energy Solutions 🔋
+
+![Humaya Power](public/background2.png)
+
+## Overview
+
+Humaya Power is at the forefront of energy transformation, specializing in high-performance lithium-ion batteries and flexible energy solutions. Our mission is to create a sustainable and greener future through innovative energy technologies.
+
+## ✨ Features
+
+- **Advanced Battery Technology**: State-of-the-art lithium-ion batteries
+- **Interactive UI**: Modern, responsive design built with Next.js and Framer Motion
+- **Seamless Experience**: Smooth animations and transitions
+- **Mobile-First Approach**: Fully responsive across all devices
+- **Performance Optimized**: Built with modern web technologies for optimal performance
+
+## 🛠️ Tech Stack
+
+- **Frontend Framework**: Next.js 14
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **3D Rendering**: Three.js with React Three Fiber
+- **Typography**: Custom fonts with Montserrat and Syne
+- **Icons**: React Icons
+- **Type Safety**: TypeScript
+
 <div align="center">
-  <img src="Humaya Bird Logo.png" alt="Humaya Logo" width="200"/>
+  <img src="HumayaBirdLogo.png" alt="Humaya Logo" width="200"/>
   <h1>Humaya Power</h1>
   <p>A cutting-edge web application built with Next.js</p>
   
@@ -8,94 +35,80 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-4.5+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 </div>
 
-## 🚀 Quick Start
+## 🚀 Getting Started
 
-Get your project up and running in no time:
+### Prerequisites
 
-1. **Clone the repository:**
+- Node.js (version 18 or higher)
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/your-nextjs-project.git
-   cd your-nextjs-project
+   git clone [your-repository-url]
+   cd hmp-try1
    ```
 
-2. **Install dependencies:**
+2. Install dependencies:
    ```bash
    npm install
    # or
    yarn install
    ```
 
-3. **Start the development server:**
+3. Run the development server:
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-4. **Open your browser:**
-   Visit [http://localhost:3000](http://localhost:3000) to see your app in action!
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-## 🛠️ Technologies
+## 🌟 Usage
 
-<div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" alt="Next.js" width="50" height="50"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="50" height="50"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="50" height="50"/>
-</div>
+The application features a modern, intuitive interface with:
+- Interactive landing page with parallax effects
+- Smooth scroll animations
+- Responsive design for all screen sizes
+- Easy navigation through different sections
 
-- **Next.js**: The React framework for production
-- **React**: A JavaScript library for building user interfaces
-- **TypeScript**: Typed superset of JavaScript
-- **Tailwind CSS**: A utility-first CSS framework
-- **Daisy UI**: A component library for Tailwind CSS
-- **Shadcn UI**: A component library for Tailwind CSS
+## 🔧 Development
 
-## 📂 Project Structure
+### Available Scripts
 
-your-nextjs-project/
-│
-├── app/
-│   ├── components/
-│   ├── layout.tsx
-│   └── page.tsx
-│
-├── public/
-│
-├── styles/
-│
-├── next.config.js
-│
-├── package.json
-│
-└── tsconfig.json
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint for code quality
 
-## 🎨 Customization
+### Project Structure
 
-Modify `app/page.tsx` to start building your app. Next.js features auto-updates, so you'll see your changes instantly!
-
-## 📚 Learn More
-
-Expand your Next.js knowledge:
-
-- [Next.js Documentation](https://nextjs.org/docs) - comprehensive guide to Next.js features
-- [Learn Next.js](https://nextjs.org/learn) - interactive Next.js tutorial
-
-## 🚀 Deployment
-
-Deploy your Next.js app with ease using [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), the platform from the creators of Next.js.
-
-For more deployment options, check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment).
+```
+hmp-try1/
+├── src/
+│   ├── app/          # Next.js pages and routing
+│   ├── components/   # Reusable UI components
+│   └── styles/       # Global styles and Tailwind config
+├── public/           # Static assets
+└── ...config files
+```
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/Shujaulislam/hmp-try1/issues).
+We welcome contributions! Please feel free to submit a Pull Request.
 
-## 📄 License
+## 📝 License
 
-This project is [MIT](https://opensource.org/licenses/MIT) licensed.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🌐 Links
+
+- [Website](https://humayapower.in/)
+- [Documentation](https://your-docs.com)
+- [Support](mailto:info@humayapower.com)
 
 ---
 
-<div align="center">
-  <sub>Built with ❤️ by [Team Humaya](https://github.com/Shujaulislam)</sub>
-</div>
+Built with ❤️ by Humaya Power Team
