@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
-import { montserrat, nunito, syne } from '../font';
+import { syne } from '../font';
 import Link from 'next/link';
 
 const fadeIn = {
@@ -73,7 +73,7 @@ export default function ContactPage() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className={`${nunito.className} text-sm sm:text-base md:text-lg text-gray-900 dark:text-white`}
+                className="text-sm sm:text-base md:text-lg text-gray-900 dark:text-white"
               >
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4">
                   <p><FaMapMarkerAlt className="inline-block mr-2 text-orange-500" /> E-153, Gali No. 2, Chand Bagh, New Mustafabad, New Delhi, Delhi, 110094</p>

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { FaSolarPanel, FaBatteryFull, FaLeaf, FaCity } from 'react-icons/fa';
 import { FcInTransit, FcBusinessman } from "react-icons/fc";
-import { montserrat, syne } from './font';
+import { syne } from './font';
 
 const Page = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);

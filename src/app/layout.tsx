@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Inter} from "next/font/google";
-import { syne, roboto, montserrat, nunito } from "./font";
+import { syne, roboto } from "./font";
 import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Humaya Power",
@@ -25,7 +23,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/32x32.ico" />
         <link rel="icon" type="image/png" sizes="16x16" href="/16x16.ico" />
       </head>
-   <body className={`${syne.className} ${roboto.className} ${montserrat.className} ${nunito.className} ${inter.className}`}>
+   <body className={`${syne.variable} ${roboto.variable} font-roboto antialiased`}>
     <Navbar/>
     {children}
     <Footer/>

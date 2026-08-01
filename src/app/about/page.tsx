@@ -1,8 +1,8 @@
 "use client"
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { montserrat, syne } from '../font';
+import { motion } from 'motion/react';
+import { syne } from '../font';
 import Link from 'next/link';
 import { FcInTransit,FcElectricity } from 'react-icons/fc';
 import { GiModernCity } from "react-icons/gi";
