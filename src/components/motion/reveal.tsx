@@ -1,8 +1,11 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
+
+/** Never changes, so useSyncExternalStore only distinguishes server vs client. */
+const subscribeNoop = () => () => {};
 
 type RevealProps = {
   children: ReactNode;
@@ -30,9 +33,12 @@ export default function Reveal({
   delay = 0,
 }: RevealProps) {
   const reduce = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  // false during SSR and the first client render, true thereafter.
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false,
+  );
 
   if (!mounted || reduce) {
     return <div className={className}>{children}</div>;
