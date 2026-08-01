@@ -1,11 +1,19 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import { syne } from '../font'
+
+export const metadata: Metadata = {
+  title: 'Policies',
+  description:
+    'Privacy Policy, Refund and Cancellation, Return and Shipping policies for Humaya Power.',
+  alternates: { canonical: '/policies' },
+}
 
 export default function Policies() {
   return (
-    <div className="bg-gray-50 min-h-screen pt-28 pb-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-slate-50 min-h-screen pt-32 md:pt-40 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className={`${syne.className} text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-gray-900`}>Policies</h1>
+        <h1 className={`${syne.className} text-3xl md:text-4xl font-bold leading-[1.2] pb-1 mb-6 md:mb-8 text-slate-900`}>Policies</h1>
         
         <div className="bg-white shadow overflow-hidden sm:rounded-lg mb-6 md:mb-8">
           <div className="px-4 py-4 sm:p-6">

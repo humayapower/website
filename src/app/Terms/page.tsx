@@ -1,11 +1,19 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import { syne } from '../font'
+
+export const metadata: Metadata = {
+  title: 'Terms and Conditions',
+  description:
+    'Terms of Use for humayapower.in, published under the Information Technology Act, 2000.',
+  alternates: { canonical: '/Terms' },
+}
 
 export default function TermsAndConditions() {
   return (
-    <div className="bg-gray-50 min-h-screen pt-28 pb-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-slate-50 min-h-screen pt-32 md:pt-40 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className={`${syne.className} text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-gray-900`}>Terms and Conditions</h1>
+        <h1 className={`${syne.className} text-3xl md:text-4xl font-bold leading-[1.2] pb-1 mb-6 md:mb-8 text-slate-900`}>Terms and Conditions</h1>
         
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
           <div className="px-4 py-4 sm:p-6">

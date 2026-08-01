@@ -1,199 +1,114 @@
-"use client"
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import Image from 'next/image';
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
-import { syne } from '../font';
-import Link from 'next/link';
+import type { Metadata } from "next";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import { syne } from "../font";
+import ContactForm from "@/components/contact/contact-form";
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Talk to Humaya Power about EV batteries, storage, rentals, custom packs or a swap station partnership. Based in New Delhi, serving customers across India.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Us",
+    description:
+      "Talk to us about EV batteries, storage, rentals, custom packs or a swap station partnership.",
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {
- 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    budget: '',
-    message: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
-  };
-
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative text-white md:pt-32 md:pb-16 pb-10 pt-24">
-        <div className="absolute bg-black/60 inset-0 z-0">
-          <Image 
-            src="/StoreDot.jpg" 
-            alt="Hero Background"  
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-black opacity-80 z-10"></div>
-        <motion.div
-          className="container mx-auto px-4 sm:px-10 text-center relative z-10"
-          initial="initial"
-          animate="animate"
-        >
-          <h1 className={`${syne.className} text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6`}>Let&apos;s Connect</h1>
-          <p className="text-sm sm:text-base md:text-xl">Join us in shaping a sustainable energy future—reach out for collaboration and inquiries.</p>
-        </motion.div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-10 sm:py-20 px-5 sm:px-10 md:px-20 overflow-hidden">
-        <div className="mx-auto lg:max-w-7xl w-full">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-10 lg:space-y-0 lg:space-x-20">
-            {/* Address Section */}
-            <div className="lg:w-1/2 text-left mb-10 lg:mb-0">
-              <motion.h2
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className={`${syne.className} text-3xl sm:text-4xl mt-6 text-gray-900 dark:text-white font-bold mb-8 text-center`}
-              >
-                Let&apos;s build an awesome project together!
-              </motion.h2>
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-sm sm:text-base md:text-lg text-gray-900 dark:text-white"
-              >
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4">
-                  <p><FaMapMarkerAlt className="inline-block mr-2 text-orange-500" /> E-153, Gali No. 2, Chand Bagh, New Mustafabad, New Delhi, Delhi, 110094</p>
-                </div>
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4">
-                  <p><FaPhoneAlt className="inline-block mr-2 text-orange-500" /> (+91) 729-1000-560</p>
-                </div>
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                  <p>
-                    <Link href={`mailto:info@humayapower.in`}>
-                      <p>
-                        <FaEnvelope className="inline-block mr-2 text-orange-500" />
-                        info@humayapower.in
-                      </p>
-                    </Link>
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Original Contact Form */}
-            <motion.form
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              onSubmit={handleSubmit}
-              className="space-y-4 bg-white dark:bg-gray-800 p-6 sm:p-10 shadow-md rounded-lg w-full lg:w-1/2"
+      {/* Hero. Third page-top treatment, kept short so the form is close. */}
+      <section className="bg-slate-950 px-5 pb-16 pt-32 md:px-12 md:pb-20 md:pt-40 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
+            <h1
+              className={`${syne.className} text-4xl font-bold leading-[1.15] pb-1 tracking-tight text-white sm:text-5xl lg:col-span-7 lg:text-6xl`}
             >
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <div className="w-full">
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your name *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Enter name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    required
-                  />
-                </div>
-                <div className="w-full">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your email *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Enter email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <div className="w-full">
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your company</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    placeholder="Company name"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  />
-                </div>
-                <div className="w-full">
-                  <label htmlFor="budget" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Budget Range</label>
-                  <input
-                    type="text"
-                    id="budget"
-                    name="budget"
-                    placeholder="In USD"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Type here..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full px-8 py-2 h-12 rounded-md flex items-center justify-center bg-orange-500 text-white hover:bg-opacity-80 transition-colors duration-300"
-              >
-                Send
-              </button>
-            </motion.form>
+              Let&apos;s connect
+            </h1>
+            <p className="max-w-xl text-lg leading-relaxed text-slate-300 lg:col-span-5 lg:self-end">
+              Tell us what you need and we will come back with options and
+              pricing.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Google Map */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-10 px-4 min-w-max mx-auto">
-        <h2 className={`${syne.className} text-3xl md:text-4xl font-bold mb-6 text-center text-gray-900 dark:text-white`}>
-          Our Location
-        </h2>
-        <div className="max-w-6xl mx-auto overflow-hidden rounded-lg shadow-lg">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13997.934401935903!2d77.2676032!3d28.7050902!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd3aef2a99e3%3A0xc399e40fcdf3391b!2sHumaya%20Power!5e0!3m2!1sen!2sin!4v1725256686545!5m2!1sen!2sin"
-            width="100%"
-            height="450"
-            style={{ border: 0 }}
-            allowFullScreen={false}
-            referrerPolicy="no-referrer-when-downgrade">
-          </iframe>
+      {/* Form plus contact details. */}
+      <section className="bg-white px-5 py-20 md:px-12 md:py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <ContactForm />
+            </div>
+
+            <aside className="space-y-8 lg:col-span-5">
+              <div>
+                <h2
+                  className={`${syne.className} text-2xl font-bold leading-[1.25] pb-0.5 tracking-tight text-slate-900`}
+                >
+                  Reach us directly
+                </h2>
+                <p className="mt-3 leading-relaxed text-slate-600">
+                  We usually reply within two working days.
+                </p>
+              </div>
+
+              <ul className="space-y-6 border-t border-slate-200 pt-8">
+                <li className="flex gap-4">
+                  <FaMapMarkerAlt
+                    className="mt-1 shrink-0 text-orange-600"
+                    size={18}
+                    aria-hidden="true"
+                  />
+                  <address className="not-italic leading-relaxed text-slate-700">
+                    E-153, Gali No. 2, Chand Bagh, New Mustafabad, New Delhi,
+                    Delhi, 110094
+                  </address>
+                </li>
+                <li className="flex gap-4">
+                  <FaPhoneAlt
+                    className="mt-1 shrink-0 text-orange-600"
+                    size={18}
+                    aria-hidden="true"
+                  />
+                  <a
+                    href="tel:+917291000560"
+                    className="text-slate-700 transition-colors hover:text-orange-700"
+                  >
+                    (+91) 729-1000-560
+                  </a>
+                </li>
+                <li className="flex gap-4">
+                  <FaEnvelope
+                    className="mt-1 shrink-0 text-orange-600"
+                    size={18}
+                    aria-hidden="true"
+                  />
+                  <a
+                    href="mailto:info@humayapower.in"
+                    className="text-slate-700 transition-colors hover:text-orange-700"
+                  >
+                    info@humayapower.in
+                  </a>
+                </li>
+              </ul>
+
+              <div className="overflow-hidden rounded-2xl border border-slate-200">
+                <iframe
+                  title="Humaya Power location on Google Maps"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13997.934401935903!2d77.2676032!3d28.7050902!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd3aef2a99e3%3A0xc399e40fcdf3391b!2sHumaya%20Power!5e0!3m2!1sen!2sin!4v1725256686545!5m2!1sen!2sin"
+                  width="100%"
+                  height="320"
+                  loading="lazy"
+                  style={{ border: 0 }}
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
     </>
