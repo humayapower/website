@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
 type RevealProps = {
@@ -15,6 +16,13 @@ type RevealProps = {
  *
  * Motivation (skill 5): sequences content into view as the reader arrives at
  * it. Collapses to static under prefers-reduced-motion.
+ *
+ * Fails visible on purpose. The server renders plain content, and the
+ * animated variant is only swapped in after mount, so a JS failure or a
+ * missed intersection callback can never leave a section blank. An earlier
+ * version rendered `initial={{ opacity: 0 }}` on the server and relied on
+ * `whileInView` to reveal it, which left tall sections invisible when the
+ * viewport threshold was not satisfied on first pass.
  */
 export default function Reveal({
   children,
@@ -22,13 +30,20 @@ export default function Reveal({
   delay = 0,
 }: RevealProps) {
   const reduce = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted || reduce) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0, margin: "0px 0px -10% 0px" }}
       transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}

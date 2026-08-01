@@ -89,7 +89,7 @@ const FooterBlock = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Humaya Power on Instagram"
-              className="transition-colors hover:text-orange-400"
+              className="transition-colors hover:text-[#E1306C]"
             >
               <FaInstagram size={20} />
             </Link>
@@ -98,7 +98,7 @@ const FooterBlock = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Humaya Power on LinkedIn"
-              className="transition-colors hover:text-orange-400"
+              className="transition-colors hover:text-[#0A66C2]"
             >
               <FaLinkedin size={20} />
             </Link>
