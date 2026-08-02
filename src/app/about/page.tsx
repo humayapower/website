@@ -1,252 +1,218 @@
-"use client"
-import React from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { montserrat, syne } from '../font';
-import Link from 'next/link';
-import { FcInTransit,FcElectricity } from 'react-icons/fc';
-import { GiModernCity } from "react-icons/gi";
-import { FaCity } from 'react-icons/fa';
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import Reveal from "@/components/motion/reveal";
+import { impactStats } from "@/data/impact";
+import { syne } from "../font";
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Humaya Power extends the lifecycle of Li-ion batteries, making them a safer and more affordable alternative to lead-acid. Our story, mission and impact.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Us",
+    description:
+      "Extending the lifecycle of Li-ion batteries for a safer, more affordable alternative to lead-acid.",
+    url: "/about",
+    images: [{ url: "/swap-station.jpg", width: 1800, height: 1199 }],
+  },
 };
 
 export default function AboutUs() {
   return (
-    <main>
-      {/* Hero Section */}
-      
-      <section className="relative text-white md:pt-32 md:pb-16 pb-10 pt-24">
-        <div className="absolute bg-black/60 inset-0 z-0">
-          <Image 
-            src="/StoreDot.jpg" 
-            alt="Hero Background"  
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-black opacity-80 z-10"></div>
-        <motion.div
-          className="container mx-auto px-4 sm:px-10 text-center relative z-10"
-          initial="initial"
-          animate="animate"
-        >
-          <h1 className={`${syne.className} text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6`}>We Are Humaya Power</h1>
-          <p className="text-sm sm:text-base md:text-xl">Powering a sustainable future with innovative energy solutions</p>
-        </motion.div>
-      </section>
-      
-      {/* History Section */}
-      <section className="py-24 bg-slate-100">
-        <div className="container mx-auto pl-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <motion.div
-              className="md:w-1/2 mb-8 md:mb-0"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <Image src="/Background2.png" alt="Our Journey" width={500} height={300} className="rounded-lg shadow-xl" />
-            </motion.div>
-            <motion.div
-              className="md:w-1/2 md:pl-12"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <p className="text-gray-700 mb-6 text-lg font-normal leading-8">
-                Our journey began with a vision to revolutionise the way energy resources are used and preserved. Witnessing the wasteful crushing and recycling processes of damaged batteries, our founders were driven to create a more sustainable solution.
-              </p>
-              <p className="text-gray-700 text-lg">
-                This inspiration led to the development of innovative practices for re-manufacturing batteries, ensuring the complete utilisation of resources and significantly reducing environmental impact.
-              </p>
-            </motion.div>
-          </div>
+    <>
+      {/* Page top: one banner, type over the photograph. Section 4.7 caps hero
+          top padding at pt-24; the split and strip variants both broke it and
+          left the type stranded in a dark box above the image. */}
+      <section className="relative flex min-h-[52vh] items-end overflow-hidden pt-24 md:min-h-[58vh]">
+        <Image
+          src="/background2.jpg"
+          alt="A technician soldering cell connections on a lithium-ion battery pack at the Humaya Power workbench"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/25" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 md:px-12 md:pb-16 lg:px-8">
+          <h1
+            className={`${syne.className} max-w-3xl text-4xl font-bold leading-[1.25] pb-[0.18em] tracking-tight text-white sm:text-5xl lg:text-6xl`}
+          >
+            We are Humaya Power
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-200">
+            Powering a sustainable future with innovative energy solutions.
+          </p>
         </div>
       </section>
 
-      {/* Mission and Vision Section */}
-      <section className="py-24 bg-slate-100">
-        <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12 lg:px-5 flex flex-col md:flex-row gap-16">
-          <div className="flex md:flex-1">
-            <Image src="/swap-station.jpg" alt="working on housing" width={1300} height={900} className="w-full md:h-full object-cover rounded-lg" />
-          </div>
-          <div className="md:w-1/2 lg:w-[54%] space-y-12 text-gray-700 dark:text-gray-300">
-            <h1 className={`${syne.className} text-gray-900 dark:text-white font-semibold text-2xl sm:text-3xl md:text-4xl`}>
-              We help drive your business forward faster
-            </h1>
-            <p>
-              Humaya Power stands at the forefront of environmental sustainability by maximising the lifecycle of Li-ion batteries. Our efforts extend the usability of these batteries, making them a safer and more cost-effective alternative to lead-acid batteries. This not only conserves resources but also offers substantial benefits to communities by providing more affordable energy solutions.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="space-y-6 p-4 rounded-xl bg-white dark:bg-gray-950 border border-gray-100 dark:border-gray-900">
-                <span className="rounded-full bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 w-max p-3 flex">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                  </svg>
-                </span>
-                <h2 className="font-semibold text-xl text-gray-900 dark:text-white">Our mission</h2>
+      {/* Origin. Image left, text right. First use of this family. */}
+      <section className="bg-white px-5 py-20 md:px-12 md:py-28 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100">
+              <Image
+                src="/swap-station.jpg"
+                alt="Battery packs on the rack at a partnered swap station"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <h2
+                className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-slate-900 sm:text-4xl`}
+              >
+                Where we started
+              </h2>
+              <div className="mt-6 space-y-5 text-lg leading-relaxed text-slate-600">
                 <p>
-                  To innovate and deliver affordable energy solutions that enhance global sustainability and improve community well-being.
+                  Our journey began with a vision to change the way energy
+                  resources are used and preserved. Watching damaged batteries
+                  get crushed and recycled wastefully, our founders set out to
+                  build something better.
                 </p>
-              </div>
-              <div className="space-y-6 p-4 rounded-xl bg-white dark:bg-gray-950 border border-gray-100 dark:border-gray-900">
-                <span className="rounded-full bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 w-max p-3 flex">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </span>
-                <h2 className="font-semibold text-xl text-gray-900 dark:text-white">Our vision</h2>
                 <p>
-                  To lead global energy innovation, making sustainable solutions accessible and affordable, and empowering a greener, more equitable future for all.
+                  That led to new practices for re-manufacturing batteries,
+                  using resources completely and cutting environmental impact
+                  significantly.
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Impact Section */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12 lg:px-5 space-y-10">
-          <div className="text-center space-y-6 max-w-2xl mx-auto">
-            <h1 className={`${syne.className} text-3xl font-bold text-gray-900 dark:text-white capitalize`}>
-              Our Impact</h1>
-            <p className="text-gray-700 dark:text-gray-300">
-              Driving Change, One Battery at a Time. Humaya Power stands at the forefront of environmental sustainability by maximising the lifecycle of Li-ion batteries. Our efforts extend the usability of these batteries, making them a safer and more cost-effective alternative to lead-acid batteries.
-            </p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-            <div className="p-6 md:p-7 rounded-lg shadow-lg hover:shadow-xl transition-shadow bg-white dark:bg-gray-900 space-y-4">  {/*bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow */}
-              <div className="flex items-center gap-4 text-gray-900 dark:text-white">
-                <span className="p-2 rounded-full bg-gray-200 dark:bg-gray-800">
-                <FcInTransit className="w-6 h-6" />
-                </span>
-                <h2 className={`${syne.className} font-bold text-2xl`}>1 Million+ KM</h2>
+      {/* What drives us, with the impact figures carried inside it as an
+          orange panel. Previously this was a six-paragraph text wall and the
+          figures repeated the home page in a near-identical treatment. */}
+      <section className="bg-slate-900 px-5 py-20 md:px-12 md:py-28 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-6">
+              <h2
+                className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-white sm:text-4xl`}
+              >
+                What drives us
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-slate-300">
+                We maximise the lifecycle of Li-ion batteries, making them a
+                safer and more cost-effective alternative to lead-acid. That
+                conserves resources and puts more affordable energy within
+                reach.
+              </p>
+              <div className="mt-10 space-y-8 border-l-2 border-orange-600 pl-6">
+                <div>
+                  <h3 className="font-semibold text-white">Our mission</h3>
+                  <p className="mt-2 leading-relaxed text-slate-300">
+                    To innovate and deliver affordable energy solutions that
+                    enhance global sustainability and improve community
+                    well-being.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-white">Our vision</h3>
+                  <p className="mt-2 leading-relaxed text-slate-300">
+                    To lead global energy innovation, making sustainable
+                    solutions accessible and affordable, and empowering a
+                    greener, more equitable future for all.
+                  </p>
+                </div>
               </div>
-              <p className="text-gray-700 dark:text-gray-300">
-                Distance driven using our recycled Li-ion batteries.
+            </div>
+
+            <div className="rounded-2xl bg-orange-800 p-8 md:p-10 lg:col-span-6">
+              <p className="text-sm font-medium uppercase tracking-[0.14em] text-orange-100">
+                Driving change, one battery at a time
+              </p>
+              <dl className="mt-8 space-y-8">
+                {impactStats.map((item) => (
+                  <div
+                    key={item.figure}
+                    className="border-t border-white/25 pt-6"
+                  >
+                    <dt
+                      className={`${syne.className} text-4xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-white lg:text-5xl`}
+                    >
+                      {item.figure}
+                      <span className="ml-2 text-xl font-medium text-orange-100 lg:text-2xl">
+                        {item.unit}
+                      </span>
+                    </dt>
+                    <dd className="mt-1 text-orange-50">{item.label}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Community and what's next. Text left, image right. Mirrors origin. */}
+      <section className="bg-slate-50 px-5 py-16 md:px-12 md:py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="order-2 lg:order-1">
+              <h2
+                className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-slate-900 sm:text-4xl`}
+              >
+                Together, we empower
+              </h2>
+              <div className="mt-6 space-y-5 text-lg leading-relaxed text-slate-600">
+                <p>
+                  We are a community of innovators, environmental advocates and
+                  forward-thinkers. We work closely with our customers to
+                  collaborate on sustainable practices, and our partnerships
+                  with swap stations and local stakeholders drive adoption of
+                  greener technology.
+                </p>
+                <p>
+                  Next, we are bringing this approach to more cities and
+                  communities, developing projects and technology that extend
+                  our impact further.
+                </p>
+              </div>
+            </div>
+            <div className="relative order-1 aspect-[4/3] overflow-hidden rounded-2xl bg-slate-200 lg:order-2">
+              <Image
+                src="/EVbattery.jpg"
+                alt="Remanufactured Li-ion pack ready for dispatch"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Closing call to action. */}
+      <section className="bg-white px-5 pb-24 md:px-12 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="grid items-center gap-10 rounded-2xl bg-slate-900 px-8 py-14 md:px-14 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <h2
+                className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-white sm:text-4xl`}
+              >
+                Ready to power your future with sustainable energy?
+              </h2>
+              <p className="mt-5 max-w-xl text-lg text-slate-300">
+                Whether you want to buy, rent, or partner on a swap station,
+                tell us what you need and we will come back with options.
               </p>
             </div>
-            <div className="p-6 md:p-7 rounded-lg shadow-lg hover:shadow-xl transition-shadow bg-white dark:bg-gray-900 space-y-4">
-              <div className="flex items-center gap-4 text-gray-900 dark:text-white">
-                <span className="p-2 rounded-full bg-gray-200 dark:bg-gray-800">
-                {/* <GiModernCity className="bg-pink-400"/> */}
-                <FaCity className=" text-orange-500 w-5 h-5 " />
-                </span>
-                <h2 className={`${syne.className} font-bold text-2xl`}>10+ Cities</h2>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300">
-                Our reach has expanded across numerous cities, bringing sustainable energy solutions to a wider audience.
-              </p>
+            <div className="lg:col-span-5 lg:justify-self-end">
+              <Link
+                href="/contact"
+                className="inline-flex rounded-lg bg-orange-600 px-7 py-3 font-medium text-white transition-colors hover:bg-orange-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 active:scale-[0.98]"
+              >
+                Get in touch
+              </Link>
             </div>
-            <div className="p-6 md:p-7 rounded-lg shadow-lg hover:shadow-xl transition-shadow bg-white dark:bg-gray-900 space-y-4">
-              <div className="flex items-center gap-4 text-gray-900 dark:text-white">
-                <span className="p-2 rounded-full bg-gray-200 dark:bg-gray-800">
-                <FcElectricity className="w-5 h-5" />
-                </span>
-                <h2 className={`${syne.className} font-bold text-2xl`}>5 Partnered Swap Stations</h2>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300">
-                Established across India, enhancing accessibility to energy-efficient options.
-              </p>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
-
-
-      {/* Future Directions Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            className={`${syne.className} text-4xl font-bold mb-8 text-center text-gray-800`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Future Directions
-          </motion.h2>
-          <motion.h3
-            className="text-2xl font-semibold mb-6 text-center text-orange-600"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Expanding Horizons
-          </motion.h3>
-          <motion.p
-            className="text-gray-700 text-lg text-center max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Looking ahead, Humaya Power is committed to expanding its innovative approach to more cities and communities. We are continuously developing new projects and technologies that will further our impact, driving the transition to sustainable energy solutions globally. Our goal is not only to enhance our product offerings but also to inspire a movement towards more responsible energy consumption and production.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Community Engagement Section */}
-      <section className="py-24 bg-slate-100">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            className={`${syne.className} text-4xl font-bold mb-12 text-center text-gray-800`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Together, We Empower
-          </motion.h2>
-          <div className="flex flex-col md:flex-row items-center">
-            <motion.div
-              className="md:w-1/2 mb-8 md:mb-0"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Image src="/swap-station.jpg" alt="Community Engagement" width={500} height={300} className="rounded-lg shadow-xl" />
-            </motion.div>
-            <motion.div
-              className="md:w-1/2 md:pl-12"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <p className="text-gray-700 text-lg">
-                Humaya Power is more than a company; we are a community of innovators, environmental advocates, and forward-thinkers. We engage deeply with our customers and communities to educate and collaborate on sustainable practices. Our partnerships with swap stations and local stakeholders are vital in driving the adoption of greener technologies.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-24">
-  <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12 lg:px-5">
-    <div className="w-full relative py-8 md:py-10 px-6 md:px-8 rounded-2xl bg-slate-100 dark:from-orange-900">
-      <div className="mx-auto text-center max-w-xl md:max-w-2xl relative space-y-8">
-        <h1 className="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight font-bold text-orange-950 dark:text-white">
-          Ready to Power Your Future with <span className="text-transparent bg-clip-text bg-gradient-to-br from-orange-600 from-20% via-orange-400 via-30% to-orange-600">Sustainable Energy</span> Solutions?
-        </h1>
-        <p className="text-gray-700 dark:text-gray-300">
-          Join us in creating a cleaner, more sustainable world. Together, we can make a difference.
-        </p>
-        <div className="mx-auto max-w-md sm:max-w-xl flex justify-center">
-          <Link 
-          href="/contact"
-          className="outline-none h-12 px-5 rounded-xl bg-orange-600 text-white flex items-center hover:bg-orange-700 transition duration-300"
-           >
-            Contact Us Today
-          </Link>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</main>
+    </>
   );
 }

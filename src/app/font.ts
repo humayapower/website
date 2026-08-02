@@ -1,25 +1,17 @@
-import { Syne, Roboto, Montserrat, Nunito } from "next/font/google"; // Import multiple fonts as needed
+import { Roboto, Syne } from "next/font/google";
 
+// Display face. Carries the brand.
 export const syne = Syne({
-  subsets: ['latin'], // Specify subsets
-  weight: ['400', '500', '600','700', '800'], // Specify the font weights you want to use
-  display: 'swap', // Use swap for better performance
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-syne-var",
 });
 
+// Text face.
 export const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'], // Specify weights as needed
-  display: 'swap',
-});
-
-export const montserrat = Montserrat ({
-  subsets: ['latin'],
-  weight: ['400','500','700'],
-  display: 'swap',
-});
-
-export const nunito = Nunito ({
-  subsets: ['latin'],
-  weight: ['400','500','700'],
-  display: 'swap',
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+  variable: "--font-roboto-var",
 });
