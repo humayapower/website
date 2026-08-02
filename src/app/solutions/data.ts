@@ -1,7 +1,6 @@
-// Feature descriptors are qualitative on purpose. No timings, percentages or
-
 import { Solution } from "@/components/solutions/solution-tabs";
 
+// Feature descriptors are qualitative on purpose. No timings, percentages or
 // cycle counts until those figures are confirmed as real product claims.
 export const solutions: Solution[] = [
   {

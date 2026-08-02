@@ -64,7 +64,7 @@ export default function SolutionTabs({
                 aria-selected={selected}
                 aria-controls={`panel-${solution.id}`}
                 onClick={() => setActive(solution.id)}
-                className={`touch-manipulation rounded-lg px-4 py-3 text-sm font-medium transition-colors sm:py-2 ${
+                className={`touch-manipulation rounded-lg px-4 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 sm:py-2 ${
                   selected
                     ? "bg-orange-600 text-white"
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 sm:bg-transparent sm:hover:bg-slate-100"

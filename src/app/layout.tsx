@@ -93,9 +93,15 @@ export default function RootLayout({
         {/* Skip link sits below the navbar's z-50 on purpose. The mobile nav
             panel carries no z-index of its own and depends on document order,
             so anything stacked above the header competes with it. */}
+        {/* Sits below the header rather than above it in the stacking order.
+            The header is z-50 and its logo painted over a z-40 skip link at
+            top-4, so the focused link was invisible. Raising it past z-50
+            would instead put it over the full-screen mobile nav panel, which
+            shares that context, so it is positioned clear of the header
+            instead: 64px tall on mobile, 96px at md. */}
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-40 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900 focus:outline-2 focus:outline-orange-600"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-20 focus:z-40 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900 focus:outline-2 focus:outline-orange-600 md:focus:top-28"
         >
           Skip to content
         </a>
