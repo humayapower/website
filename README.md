@@ -26,6 +26,7 @@ Humaya Power is at the forefront of energy transformation, specializing in high-
 - **Typography**: Custom fonts with Roboto and Syne
 - **Icons**: React Icons
 - **Type Safety**: TypeScript
+- **Linter**: Biome
 
  <div align="center">
    
@@ -50,6 +51,7 @@ Humaya Power is at the forefront of energy transformation, specializing in high-
 ### Prerequisites
 
 - Node.js (version 20 or higher)
+- React.js (19 or higher preferred)
 - npm or yarn package manager
 
 ### Installation
