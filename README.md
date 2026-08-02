@@ -20,11 +20,10 @@ Humaya Power is at the forefront of energy transformation, specializing in high-
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: Next.js 14
+- **Frontend Framework**: Next.js 16
 - **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **3D Rendering**: Three.js with React Three Fiber
-- **Typography**: Custom fonts with Montserrat and Syne
+- **Animations**: Motion (react-motion)
+- **Typography**: Custom fonts with Roboto and Syne
 - **Icons**: React Icons
 - **Type Safety**: TypeScript
 
@@ -50,7 +49,7 @@ Humaya Power is at the forefront of energy transformation, specializing in high-
 
 ### Prerequisites
 
-- Node.js (version 18 or higher)
+- Node.js (version 20 or higher)
 - npm or yarn package manager
 
 ### Installation
@@ -58,7 +57,7 @@ Humaya Power is at the forefront of energy transformation, specializing in high-
 1. Clone the repository:
    ```bash
    git clone [your-repository-url]
-   cd hmp-try1
+   cd humaya-power-website
    ```
 
 2. Install dependencies:
@@ -92,12 +91,12 @@ The application features a modern, intuitive interface with:
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
-- `npm run lint` - Run ESLint for code quality
+- `npm run lint` - Run Biome for code quality
 
 ### Project Structure
 
 ```
-hmp-try1/
+website/
 ├── src/
 │   ├── app/          # Next.js pages and routing
 │   ├── components/   # Reusable UI components
@@ -117,9 +116,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🌐 Links
 
 - [Website](https://humayapower.in/)
-- [Documentation](https://your-docs.com)
+<!-- - [Documentation](https://your-docs.com) -->
 - [Support](mailto:info@humayapower.com)
 
 ---
 
-Built with ❤️ by Humaya Power Team
+Built with ❤️ by [Shuja]([githu](https://github.com/Shujaulislam))
