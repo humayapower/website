@@ -95,25 +95,36 @@ export default function SolutionsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
-      {/* Hero. Editorial type block, distinct from the other page tops. */}
-      <section className="bg-slate-950 px-5 pb-20 pt-32 md:px-12 md:pb-24 md:pt-40 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
-            <h1
-              className={`${syne.className} text-4xl font-bold leading-[1.15] pb-1 tracking-tight text-white sm:text-5xl lg:col-span-7 lg:text-6xl`}
-            >
-              Explore our battery solutions
-            </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-slate-300 lg:col-span-5 lg:self-end">
-              Power for the vehicles, homes and businesses we work with, priced
-              openly and serviced in India.
-            </p>
-          </div>
+      {/* Page top: photographic band. The image sits beside the type rather
+          than under it, so it stays legible instead of being scrimmed out. */}
+      {/* Page top: one banner, type over the photograph. A 50/50 split put a
+          floating rounded image beside a text column, which read as two
+          disconnected rectangles rather than a composition. */}
+      <section className="relative flex min-h-[52vh] items-end overflow-hidden pt-24 md:min-h-[58vh]">
+        <Image
+          src="/StoreDot.jpg"
+          alt="Lithium-ion cells on the assembly bench"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/25" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 md:px-12 md:pb-16 lg:px-8">
+          <h1
+            className={`${syne.className} max-w-3xl text-4xl font-bold leading-[1.25] pb-[0.18em] tracking-tight text-white sm:text-5xl lg:text-6xl`}
+          >
+            Explore our battery solutions
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-200">
+            Power for the vehicles, homes and businesses we work with, priced
+            openly and serviced in India.
+          </p>
         </div>
       </section>
 
       {/* Products. Card grid, one layout family, no zigzag. */}
-      <section className="bg-white px-5 py-24 md:px-12 lg:px-8">
+      <section className="bg-white px-5 py-20 md:px-12 md:py-32 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {products.map((product, i) => (
@@ -133,7 +144,7 @@ export default function SolutionsPage() {
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <h2
-                    className={`${syne.className} text-xl font-bold leading-[1.25] pb-0.5 tracking-tight text-slate-900`}
+                    className={`${syne.className} text-xl font-bold leading-[1.35] pb-[0.14em] tracking-tight text-slate-900`}
                   >
                     {product.name}
                   </h2>
@@ -162,12 +173,12 @@ export default function SolutionsPage() {
       </section>
 
       {/* Custom packs. Full-width split, breaking the grid rhythm. */}
-      <section className="bg-slate-50 px-5 py-24 md:px-12 lg:px-8">
+      <section className="bg-slate-50 px-5 py-16 md:px-12 md:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Reveal className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
               <h2
-                className={`${syne.className} text-3xl font-bold leading-[1.2] pb-1 tracking-tight text-slate-900 sm:text-4xl`}
+                className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-slate-900 sm:text-4xl`}
               >
                 Customised battery packs
               </h2>
@@ -185,7 +196,7 @@ export default function SolutionsPage() {
                 href="/contact"
                 className="mt-7 inline-flex rounded-lg bg-orange-600 px-7 py-3 font-medium text-white transition-colors hover:bg-orange-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 active:scale-[0.98]"
               >
-                Request a quote
+                Enquire
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -226,7 +237,7 @@ export default function SolutionsPage() {
         <div className="relative z-10 mx-auto max-w-7xl">
           <Reveal className="max-w-2xl">
             <h2
-              className={`${syne.className} text-3xl font-bold leading-[1.2] pb-1 tracking-tight text-white sm:text-4xl`}
+              className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-white sm:text-4xl`}
             >
               Partner with us on a swap station
             </h2>

@@ -29,15 +29,18 @@ const CLIP_PROBE = () => {
     const lineHeight = parseFloat(cs.lineHeight);
     const fontSize = parseFloat(cs.fontSize);
     const padBottom = parseFloat(cs.paddingBottom) || 0;
-    // Syne descenders reach ~0.22em below baseline; a line box tighter than
-    // ~1.15em leaves nothing for them unless padding makes up the difference.
-    const headroom = lineHeight - fontSize * 1.12 + padBottom;
-    if (headroom < 0) {
+    // Syne descenders reach ~0.26em below the baseline. Half-leading plus any
+    // bottom padding has to cover that, otherwise g/j/p/q/y and the comma get
+    // cut flat. An earlier version of this probe compared against the line
+    // box instead of glyph depth and reported clipped headings as passing.
+    const headroom = padBottom + (lineHeight - fontSize) / 2;
+    if (headroom < fontSize * 0.24) {
       out.push({
         text: text.slice(0, 48),
         fontSize: Math.round(fontSize),
         lineHeight: Math.round(lineHeight),
         headroom: Math.round(headroom * 10) / 10,
+        needed: Math.round(fontSize * 0.24 * 10) / 10,
       });
     }
   }

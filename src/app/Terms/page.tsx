@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 
 export default function TermsAndConditions() {
   return (
-    <div className="bg-slate-50 min-h-screen pt-32 md:pt-40 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="bg-slate-50 min-h-[100dvh] pt-28 md:pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className={`${syne.className} text-3xl md:text-4xl font-bold leading-[1.2] pb-1 mb-6 md:mb-8 text-slate-900`}>Terms and Conditions</h1>
+        <h1 className={`${syne.className} text-3xl md:text-4xl font-bold leading-[1.3] pb-[0.16em] mb-6 md:mb-8 text-slate-900`}>Terms and Conditions</h1>
         
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
           <div className="px-4 py-4 sm:p-6">
@@ -31,7 +31,7 @@ export default function TermsAndConditions() {
             
             <p className="mb-6 font-bold text-sm md:text-base">ACCESSING, BROWSING OR OTHERWISE USING THE PLATFORM INDICATES YOUR AGREEMENT TO ALL THE TERMS AND CONDITIONS UNDER THESE TERMS OF USE, SO PLEASE READ THE TERMS OF USE CAREFULLY BEFORE PROCEEDING.</p>
             
-            <h2 className="text-xl md:text-2xl font-semibold mb-4 mt-6">The use of Platform and/or availing of our Services is subject to the following Terms of Use:</h2>
+            <h2 className="text-xl md:text-2xl font-semibold leading-[1.35] pb-[0.12em] mb-4 mt-6">The use of Platform and/or availing of our Services is subject to the following Terms of Use:</h2>
             
             <ol className="list-decimal pl-5 mb-4 space-y-3 text-sm md:text-base">
               <li>To access and use the Services, you agree to provide true, accurate and complete information to us during and after registration, and you shall be responsible for all acts done through the use of your registered account on the Platform.</li>

@@ -39,7 +39,7 @@ export default function Home() {
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pt-24 sm:px-10 lg:px-8">
           <div className="flex flex-col items-center space-y-8 text-center">
             <h1
-              className={`${syne.className} max-w-4xl text-4xl font-bold leading-[1.15] pb-1 tracking-tight text-white md:text-5xl lg:text-6xl`}
+              className={`${syne.className} max-w-4xl text-4xl font-bold leading-[1.25] pb-[0.18em] tracking-tight text-white md:text-5xl lg:text-6xl`}
             >
               Revitalising,
               <span className="mt-2 block md:mt-0 md:inline"> the Energy</span>
@@ -67,11 +67,11 @@ export default function Home() {
       </section>
 
       {/* Positioning statement. Asymmetric: heading left, body right. */}
-      <section className="bg-slate-900 px-5 py-24 md:px-12 lg:px-8">
+      <section className="bg-slate-900 px-5 py-20 md:px-12 md:py-32 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Reveal className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <h2
-              className={`${syne.className} text-3xl font-bold leading-[1.2] pb-1 tracking-tight text-white sm:text-4xl lg:col-span-5 lg:text-5xl`}
+              className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-white sm:text-4xl lg:col-span-5 lg:text-5xl`}
             >
               Energise your world, sustainably
             </h2>
@@ -93,7 +93,7 @@ export default function Home() {
       </section>
 
       {/* Proof. Asymmetric stat composition, no card grid. */}
-      <section className="bg-white px-5 py-24 md:px-12 lg:px-8">
+      <section className="bg-white px-5 py-20 md:px-12 md:py-28 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <p className="max-w-md text-sm font-medium uppercase tracking-[0.14em] text-orange-700">
@@ -110,7 +110,7 @@ export default function Home() {
                 }`}
               >
                 <p
-                  className={`${syne.className} text-4xl font-bold leading-[1.2] pb-1 tracking-tight text-slate-900 lg:text-5xl`}
+                  className={`${syne.className} text-4xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-slate-900 lg:text-5xl`}
                 >
                   {stat.figure}
                   <span className="ml-2 text-xl font-medium text-orange-600 lg:text-2xl">
@@ -125,12 +125,12 @@ export default function Home() {
       </section>
 
       {/* Closing call to action. */}
-      <section className="bg-slate-50 px-5 py-24 md:px-12 lg:px-8">
+      <section className="bg-slate-50 px-5 py-16 md:px-12 md:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Reveal className="grid items-center gap-10 rounded-2xl bg-slate-900 px-8 py-14 md:px-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <h2
-                className={`${syne.className} text-3xl font-bold leading-[1.2] pb-1 tracking-tight text-white sm:text-4xl`}
+                className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-white sm:text-4xl`}
               >
                 Ready to power your future with sustainable energy?
               </h2>

@@ -19,20 +19,20 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* Hero. Third page-top treatment, kept short so the form is close. */}
-      <section className="bg-slate-950 px-5 pb-16 pt-32 md:px-12 md:pb-20 md:pt-40 lg:px-8">
+      {/* Page top: compact, no image, so the form sits near the fold. The
+          short measure and centred alignment distinguish it from the wide
+          type-led about top and the split solutions top. */}
+      <section className="bg-slate-950 px-5 pb-14 pt-28 md:px-12 md:pb-16 md:pt-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
-            <h1
-              className={`${syne.className} text-4xl font-bold leading-[1.15] pb-1 tracking-tight text-white sm:text-5xl lg:col-span-7 lg:text-6xl`}
-            >
-              Let&apos;s connect
-            </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-slate-300 lg:col-span-5 lg:self-end">
-              Tell us what you need and we will come back with options and
-              pricing.
-            </p>
-          </div>
+          <h1
+            className={`${syne.className} max-w-2xl text-4xl font-bold leading-[1.25] pb-[0.18em] tracking-tight text-white sm:text-5xl`}
+          >
+            Let&apos;s connect
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
+            Tell us what you need and we will come back with options and
+            pricing.
+          </p>
         </div>
       </section>
 
@@ -47,7 +47,7 @@ export default function ContactPage() {
             <aside className="space-y-8 lg:col-span-5">
               <div>
                 <h2
-                  className={`${syne.className} text-2xl font-bold leading-[1.25] pb-0.5 tracking-tight text-slate-900`}
+                  className={`${syne.className} text-2xl font-bold leading-[1.35] pb-[0.14em] tracking-tight text-slate-900`}
                 >
                   Reach us directly
                 </h2>

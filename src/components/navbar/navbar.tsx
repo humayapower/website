@@ -1,125 +1,121 @@
-"use client";
-
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
-
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/solutions", label: "Solutions" },
-  { href: "/about", label: "About Us" },
-  { href: "/contact", label: "Contact Us" },
-];
+"use client"
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const Navbar = () => {
-  const [openNavbar, setOpenNavbar] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
+    const [openNavbar, setOpenNavbar] = useState(false);
+    const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+    const [navbarClass, setNavbarClass] = useState('bg-transparent');
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-  // Motion's scroll observer. Replaces a window scroll listener that was
-  // being torn down and rebuilt on every frame.
-  const { scrollY } = useScroll();
+    const toggleNavbar = () => {
+        setOpenNavbar(!openNavbar);
+    };
+    const closeNavbar = () => {
+        setOpenNavbar(false);
+    };
 
-  useMotionValueEvent(scrollY, "change", (current) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    setScrolled(current > 80);
-    if (openNavbar) return;
-    setHidden(current > previous && current > 600);
-  });
+    useEffect(() => {
+        // This block will only run on the client side
+        if (typeof window !== 'undefined') {
+            let ticking = false;
+            let currentScrollPos = window.scrollY; // Now safely accessed within useEffect
 
-  const closeNavbar = () => setOpenNavbar(false);
+            const handleScroll = () => {
+                currentScrollPos = window.scrollY;
 
-  return (
-    <motion.header
-      animate={{ y: hidden ? "-100%" : 0 }}
-      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 flex h-16 items-center transition-colors duration-300 md:h-20 ${
-        scrolled || openNavbar
-          ? "bg-slate-950/90 backdrop-blur-md"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="w-full px-5 md:px-12 lg:px-8">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Link href="/" onClick={closeNavbar} className="relative z-10">
-            <Image
-              src="/Logo.png"
-              alt="Humaya Power"
-              width={224}
-              height={98}
-              priority
-              className="h-9 w-auto md:h-11"
-            />
-          </Link>
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        // Hide navbar when scrolling down by 600 pixels
+                        if (currentScrollPos > prevScrollPos && currentScrollPos > 600) {
+                            setIsNavbarVisible(false);
+                        }
 
-          <nav
-            className={`fixed inset-0 flex flex-col items-center justify-center gap-y-8 bg-slate-950 text-center transition-all duration-300 ease-linear md:relative md:inset-auto md:!bg-transparent md:flex-1 md:flex-row md:justify-between md:gap-x-10 md:py-0 md:opacity-100 ${
-              openNavbar
-                ? "visible translate-y-0 opacity-100"
-                : "invisible -translate-y-4 opacity-0 md:visible md:translate-y-0"
-            }`}
-          >
-            <ul className="flex flex-col gap-y-6 md:flex-1 md:flex-row md:items-center md:justify-center md:gap-x-8 md:gap-y-0">
-              {links.map((link) => {
-                const active = pathname === link.href;
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      onClick={closeNavbar}
-                      aria-current={active ? "page" : undefined}
-                      className={`text-lg transition-colors md:text-base ${
-                        active
-                          ? "text-orange-400"
-                          : "text-white hover:text-orange-300"
-                      }`}
-                    >
-                      {link.label}
+                        // Change background color after scrolling down by 150 pixels
+                        if (currentScrollPos > 100) {
+                            setNavbarClass('bg-black');
+                        } else {
+                            setNavbarClass('bg-transparent');
+                        }
+
+                        // Show navbar when scrolling up
+                        if (currentScrollPos < prevScrollPos && prevScrollPos - currentScrollPos > 20) {
+                            setIsNavbarVisible(true);
+                        }
+
+                        setPrevScrollPos(currentScrollPos); // Update the previous scroll position
+                        ticking = false;
+                    });
+
+                    ticking = true;
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+
+            // Cleanup function to remove event listener
+            return () => window.removeEventListener('scroll', handleScroll);
+        }
+    }, [prevScrollPos]);
+
+    return (
+        <header className={`fixed top-0 inset-x-0 z-50 h-16 md:h-24 flex items-center transition-all duration-300 ${navbarClass} ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+            <div className="md:px-12 lg:px-28 px-5 w-full items-center">
+                <div className="flex justify-between items-center">
+                    <Link href="/">
+                        <Image src="/Logo.png" alt="logo" width={100} height={100} className="w-20 h-10 md:w-28 md:h-14"/>
                     </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <div className="md:min-w-max">
-              <Link
-                href="/contact"
-                onClick={closeNavbar}
-                className="inline-flex items-center gap-x-2 rounded-lg bg-orange-600 px-5 py-2.5 text-base font-medium text-white transition-colors hover:bg-orange-700 md:text-sm"
-              >
-                Get in touch
-              </Link>
+                    <nav className={`
+                        flex flex-col items-center text-center inset-0 fixed py-20
+                        dark:bg-gray-950 
+                        transition-all ease-linear duration-300 
+                        md:!bg-transparent md:flex-row md:flex-1 md:py-0 md:px-0 md:space-y-0 md:gap-x-10 md:relative md:justify-between ${openNavbar ? "visible h-screen bg-white text-black opacity-100 translate-y-0" : "text-white -translate-y-9 opacity-0 invisible md:translate-y-0 md:visible md:opacity-100"}`}>
+                        <ul className="flex flex-col gap-y-5 md:items-center md:flex-row md:gap-x-5 md:justify-center md:flex-1">
+                            <li>
+                                <Link href="/" onClick={closeNavbar} className="transition ease-linear hover:text-gray-200">
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/solutions" onClick={closeNavbar} className="transition ease-linear hover:text-gray-200">
+                                    Solutions
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/about" onClick={closeNavbar} className="transition ease-linear hover:text-gray-200">
+                                    About Us
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/contact" onClick={closeNavbar} className="transition ease-linear hover:text-gray-200">
+                                    Contact Us
+                                </Link>
+                            </li>
+                        </ul>
+                        <div className="w-full flex md:w-max md:min-w-max md:items-center">
+                            <Link href="/contact" className="flex justify-center gap-x-3 items-center text-white hover:text-gray-200 border-b border-white hover:border-gray-200 bg-transparent" onClick={closeNavbar}>
+                                Get in touch
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                                        <path fillRule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clipRule="evenodd" />
+                                    </svg>
+                                </span>
+                            </Link>
+                        </div>
+                    </nav>
+                    <button onClick={toggleNavbar} className="p-3 rounded-full bg-transparent md:hidden dark:bg-emerald-500 outline-none w-12 aspect-square flex flex-col relative justify-center items-center">
+                        <span className="sr-only">
+                            Toggle navbar
+                        </span>
+                        <span className={`w-6 h-0.5 rounded-full bg-orange-600 transition-transform duration-300 ease-linear ${openNavbar ? "translate-y-1.5 rotate-[40deg]" : ""}`} />
+                        <span className={`w-6 origin-center mt-1 h-0.5 rounded-full bg-orange-600 transition-all duration-300 ease-linear ${openNavbar ? "scale-x-0 opacity-0" : ""}`} />
+                        <span className={`w-6 mt-1 h-0.5 rounded-full bg-orange-600 transition-all duration-300 ease-linear ${openNavbar ? "-translate-y-1.5 -rotate-[40deg]" : ""}`} />
+                    </button>
+                </div>
             </div>
-          </nav>
-
-          <button
-            onClick={() => setOpenNavbar((v) => !v)}
-            aria-expanded={openNavbar}
-            aria-label="Toggle navigation"
-            className="relative z-10 flex aspect-square w-11 flex-col items-center justify-center rounded-full md:hidden"
-          >
-            <span
-              className={`h-0.5 w-6 rounded-full bg-orange-500 transition-transform duration-300 ease-linear ${
-                openNavbar ? "translate-y-1.5 rotate-[40deg]" : ""
-              }`}
-            />
-            <span
-              className={`mt-1 h-0.5 w-6 origin-center rounded-full bg-orange-500 transition-all duration-300 ease-linear ${
-                openNavbar ? "scale-x-0 opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`mt-1 h-0.5 w-6 rounded-full bg-orange-500 transition-all duration-300 ease-linear ${
-                openNavbar ? "-translate-y-1.5 -rotate-[40deg]" : ""
-              }`}
-            />
-          </button>
-        </div>
-      </div>
-    </motion.header>
-  );
+        </header>
+    );
 };
 
 export default Navbar;
