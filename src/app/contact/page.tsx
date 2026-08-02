@@ -1,199 +1,129 @@
-"use client"
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
-import { montserrat, nunito, syne } from '../font';
-import Link from 'next/link';
+import ContactForm from "@/components/contact/contact-form";
+import SlowZoom from "@/components/motion/slow-zoom";
+import type { Metadata } from "next";
+import Image from "next/image";
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import { syne } from "../font";
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Talk to Humaya Power about EV batteries, storage, rentals, custom packs or a swap station partnership. Based in New Delhi, serving customers across India.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Us",
+    description:
+      "Talk to us about EV batteries, storage, rentals, custom packs or a swap station partnership.",
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {
- 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    budget: '',
-    message: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
-  };
-
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative text-white md:pt-32 md:pb-16 pb-10 pt-24">
-        <div className="absolute bg-black/60 inset-0 z-0">
-          <Image 
-            src="/StoreDot.jpg" 
-            alt="Hero Background"  
+      {/* Page top: photographic banner, type over the image. Shorter than a
+          full-height hero so the form still sits close to the fold. */}
+      <section className="relative flex min-h-[46vh] items-end overflow-hidden pt-24 md:min-h-[50vh]">
+        <SlowZoom className="absolute inset-0">
+          <Image
+            src="/background2.jpg"
+            alt="A technician soldering cell connections on a lithium-ion battery pack at the Humaya Power workbench"
             fill
-            className="object-cover"
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
           />
+        </SlowZoom>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/25" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 md:px-12 md:pb-16 lg:px-8">
+          <h1
+            className={`${syne.className} max-w-2xl text-4xl font-bold leading-[1.25] pb-[0.18em] tracking-tight text-white sm:text-5xl`}
+          >
+            Let&apos;s connect
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-200">
+            Tell us what you need and we will come back with options and
+            pricing.
+          </p>
         </div>
-        <div className="absolute inset-0 bg-black opacity-80 z-10"></div>
-        <motion.div
-          className="container mx-auto px-4 sm:px-10 text-center relative z-10"
-          initial="initial"
-          animate="animate"
-        >
-          <h1 className={`${syne.className} text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6`}>Let&apos;s Connect</h1>
-          <p className="text-sm sm:text-base md:text-xl">Join us in shaping a sustainable energy future—reach out for collaboration and inquiries.</p>
-        </motion.div>
       </section>
 
-      {/* Contact Section */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-10 sm:py-20 px-5 sm:px-10 md:px-20 overflow-hidden">
-        <div className="mx-auto lg:max-w-7xl w-full">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-10 lg:space-y-0 lg:space-x-20">
-            {/* Address Section */}
-            <div className="lg:w-1/2 text-left mb-10 lg:mb-0">
-              <motion.h2
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className={`${syne.className} text-3xl sm:text-4xl mt-6 text-gray-900 dark:text-white font-bold mb-8 text-center`}
-              >
-                Let&apos;s build an awesome project together!
-              </motion.h2>
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className={`${nunito.className} text-sm sm:text-base md:text-lg text-gray-900 dark:text-white`}
-              >
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4">
-                  <p><FaMapMarkerAlt className="inline-block mr-2 text-orange-500" /> E-153, Gali No. 2, Chand Bagh, New Mustafabad, New Delhi, Delhi, 110094</p>
-                </div>
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4">
-                  <p><FaPhoneAlt className="inline-block mr-2 text-orange-500" /> (+91) 729-1000-560</p>
-                </div>
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                  <p>
-                    <Link href={`mailto:info@humayapower.in`}>
-                      <p>
-                        <FaEnvelope className="inline-block mr-2 text-orange-500" />
-                        info@humayapower.in
-                      </p>
-                    </Link>
-                  </p>
-                </div>
-              </motion.div>
+      {/* Form plus contact details. */}
+      <section className="bg-white px-5 py-20 md:px-12 md:py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <ContactForm />
             </div>
 
-            {/* Original Contact Form */}
-            <motion.form
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              onSubmit={handleSubmit}
-              className="space-y-4 bg-white dark:bg-gray-800 p-6 sm:p-10 shadow-md rounded-lg w-full lg:w-1/2"
-            >
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <div className="w-full">
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your name *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Enter name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    required
-                  />
-                </div>
-                <div className="w-full">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your email *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Enter email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <div className="w-full">
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your company</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    placeholder="Company name"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  />
-                </div>
-                <div className="w-full">
-                  <label htmlFor="budget" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Budget Range</label>
-                  <input
-                    type="text"
-                    id="budget"
-                    name="budget"
-                    placeholder="In USD"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  />
-                </div>
-              </div>
+            <aside className="space-y-8 lg:col-span-5">
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Type here..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  required
-                ></textarea>
+                <h2
+                  className={`${syne.className} text-2xl font-bold leading-[1.35] pb-[0.14em] tracking-tight text-slate-900`}
+                >
+                  Reach us directly
+                </h2>
+                <p className="mt-3 leading-relaxed text-slate-600">
+                  We usually reply within two working days.
+                </p>
               </div>
-              <button
-                type="submit"
-                className="w-full px-8 py-2 h-12 rounded-md flex items-center justify-center bg-orange-500 text-white hover:bg-opacity-80 transition-colors duration-300"
-              >
-                Send
-              </button>
-            </motion.form>
-          </div>
-        </div>
-      </section>
 
-      {/* Google Map */}
-      <section className="bg-gray-100 dark:bg-gray-900 py-10 px-4 min-w-max mx-auto">
-        <h2 className={`${syne.className} text-3xl md:text-4xl font-bold mb-6 text-center text-gray-900 dark:text-white`}>
-          Our Location
-        </h2>
-        <div className="max-w-6xl mx-auto overflow-hidden rounded-lg shadow-lg">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13997.934401935903!2d77.2676032!3d28.7050902!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd3aef2a99e3%3A0xc399e40fcdf3391b!2sHumaya%20Power!5e0!3m2!1sen!2sin!4v1725256686545!5m2!1sen!2sin"
-            width="100%"
-            height="450"
-            style={{ border: 0 }}
-            allowFullScreen={false}
-            referrerPolicy="no-referrer-when-downgrade">
-          </iframe>
+              <ul className="space-y-6 border-t border-slate-200 pt-8">
+                <li className="flex gap-4">
+                  <FaMapMarkerAlt
+                    className="mt-1 shrink-0 text-orange-600"
+                    size={18}
+                    aria-hidden="true"
+                  />
+                  <address className="not-italic leading-relaxed text-slate-700">
+                    First Floor, 25/1, Ambedkar Colony, Jeewanpur, Jawahar
+                    Nagar, New Delhi, Delhi, 110094
+                  </address>
+                </li>
+                <li className="flex gap-4">
+                  <FaPhoneAlt
+                    className="mt-1 shrink-0 text-orange-600"
+                    size={18}
+                    aria-hidden="true"
+                  />
+                  <a
+                    href="tel:+917291000560"
+                    className="text-slate-700 transition-colors hover:text-orange-700"
+                  >
+                    (+91) 729-1000-560
+                  </a>
+                </li>
+                <li className="flex gap-4">
+                  <FaEnvelope
+                    className="mt-1 shrink-0 text-orange-600"
+                    size={18}
+                    aria-hidden="true"
+                  />
+                  <a
+                    href="mailto:info@humayapower.in"
+                    className="text-slate-700 transition-colors hover:text-orange-700"
+                  >
+                    info@humayapower.in
+                  </a>
+                </li>
+              </ul>
+
+              {/* The `1d` parameter in the embed URL is the viewport span in
+                  metres. It was 13997, which framed the whole neighbourhood
+                  rather than the unit. */}
+              <div className="overflow-hidden rounded-2xl border border-slate-200">
+                <iframe
+                  title="Humaya Power manufacturing facility location on Google Maps"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1750!2d77.2676032!3d28.7050902!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd3aef2a99e3%3A0xc399e40fcdf3391b!2sHumaya%20Power!5e0!3m2!1sen!2sin!4v1725256686545!5m2!1sen!2sin"
+                  width="100%"
+                  height="320"
+                  loading="lazy"
+                  style={{ border: 0 }}
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
     </>

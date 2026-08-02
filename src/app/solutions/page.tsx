@@ -1,152 +1,130 @@
-"use client"
-import React from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { syne } from '../font';
-import Link from 'next/link';
+import Reveal from "@/components/motion/reveal";
+import SolutionTabs from "@/components/solutions/solution-tabs";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { syne } from "../font";
+import { solutions } from "./data";
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+export const metadata: Metadata = {
+  title: "Battery Solutions",
+  description:
+    "Li-ion EV batteries, rental packs, storage batteries, custom packs and swap station partnerships. Transparent pricing, built and serviced in India.",
+  alternates: { canonical: "/solutions" },
+  openGraph: {
+    title: "Battery Solutions",
+    description:
+      "Li-ion EV batteries, rental packs, storage batteries, custom packs and swap station partnerships.",
+    url: "/solutions",
+    images: [{ url: "/EVbattery.jpg", width: 1800, height: 1092 }],
+  },
+};
+// Real published prices, so these are eligible for product rich results.
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: solutions.map((solution, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Product",
+      name: solution.name,
+      description: solution.description,
+      image: `https://humayapower.in${solution.image}`,
+      brand: { "@type": "Brand", name: "Humaya Power" },
+      offers:
+        solution.id === "custom-packs"
+          ? {
+              "@type": "AggregateOffer",
+              lowPrice: "2000",
+              highPrice: "50000",
+              priceCurrency: "INR",
+              availability: "https://schema.org/InStock",
+              url: "https://humayapower.in/solutions",
+            }
+          : {
+              "@type": "Offer",
+              price: solution.price.replace(/[₹,]/g, ""),
+              priceCurrency: "INR",
+              availability: "https://schema.org/InStock",
+              url: "https://humayapower.in/solutions",
+            },
+    },
+  })),
 };
 
-const Page = () => {
+export default function SolutionsPage() {
   return (
-    <div className="min-h-screen bg-white text-black">
-      {/* Hero Section */}
-      <section className="relative text-white md:pt-32 md:pb-16 pb-10 pt-24">
-        <div className="absolute bg-black/60 inset-0 z-0">
-          <Image 
-            src="/StoreDot.jpg" 
-            alt="Hero Background"  
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-black opacity-80 z-10"></div>
-        <motion.div
-          className="container mx-auto px-4 sm:px-10 text-center relative z-10"
-          initial="initial"
-          animate="animate"
-        >
-          <h1 className={`${syne.className} text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6`}>Explore Our Battery Solutions</h1>
-          <p className="text-sm sm:text-base md:text-xl">Innovative and reliable power solutions for the future of mobility.</p>
-        </motion.div>
-      </section>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
 
-      {/* Products and Solutions Section */}
-      <section className="pt-8 sm:pt-10 pb-0 md:py-24 px-4 sm:px-10 md:px-48 mb-20">
-        {/* Battery Swap Station Partnership */}
-        <div className="flex flex-col lg:flex-row items-center gap-8 mb-16 lg:items-center">
-          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-orange-600 mb-4">Battery Swap Stations</h2>
-            <p className="text-gray-700 mb-4">Partner with us to build a network of battery swap stations for efficient and quick battery exchanges.</p>
-            <p className="text-gray-700 mb-4 font-bold">₹2 Lakh to ₹8 Lakh per station</p>
-            <Link href="/contact" className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">Partner with Us</Link>
-          </div>
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-            <Image
-              src="/swap-station.jpeg"
-              alt="Swap Station Image"
-              width={400}
-              height={300}
-              className="rounded-lg object-fill max-w-full h-auto"
-            />
-          </div>
-        </div>
-
-        {/* Rental Batteries for EV Drivers */}
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-8 mb-16 lg:items-center">
-          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-orange-600 mb-4">Rental Batteries for EV Drivers</h2>
-            <p className="text-gray-700 mb-4">Affordable rental battery solutions for electric vehicle drivers, ensuring uninterrupted journeys.</p>
-            <p className="text-gray-700 mb-4 font-bold">₹3,000/month</p>
-            <button className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">Explore Rentals</button>
-          </div>
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
-            <Image
-              src="/battery-rental.jpeg"
-              alt="Rental Battery Image"
-              width={500}
-              height={300}
-              className="rounded-lg object-contain max-w-full h-auto"
-            />
-          </div>
-        </div>
-
-        {/* Li-ion EV Batteries */}
-        <div className="flex flex-col lg:flex-row items-center gap-8 mb-16 lg:items-center">
-          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-orange-600 mb-4">Li-ion EV Batteries</h2>
-            <p className="text-gray-700 mb-4">High-performance Li-ion batteries for electric vehicles, designed for maximum efficiency and durability.</p>
-            <p className="text-gray-700 mb-4 font-bold">₹30,000</p>
-            <button className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">Discover EV Batteries</button>
-          </div>
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-            <Image
-              src="/EVbattery.jpg"
-              alt="EV Battery Image"
-              width={500}
-              height={300}
-              className="rounded-lg object-contain max-w-full h-auto"
-            />
-          </div>
-        </div>
-
-        {/* Li-ion Storage Batteries */}
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-8 mb-16 lg:items-center">
-          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-orange-600 mb-4">Li-ion Storage Batteries</h2>
-            <p className="text-gray-700 mb-4">Reliable and sustainable energy storage solutions for both residential and commercial use.</p>
-            <p className="text-gray-700 mb-4 font-bold">₹12,000</p>
-
-            <button className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">View Storage Options</button>
-          </div>
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
-            <Image
-              src="/storage-battery.jpeg"
-              alt="Storage Battery Image"
-              width={500}
-              height={300}
-              className="rounded-lg object-contain max-w-full h-auto"
-            />
-          </div>
-        </div>
-
-        {/* Customized Batteries */}
-        <div className="flex flex-col lg:flex-row items-center gap-8 mb-16 lg:items-center">
-          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-orange-600 mb-4">Customized Battery Packs</h2>
-            <p className="text-gray-700 mb-4">Customized battery packs with custom power, voltage, output, connection type, and cell type, for every need, from transport to personal use.</p>
-            <p className="text-gray-700 mb-4 font-bold">₹2,000 - ₹50,000 per pack</p>
-            <p className="text-gray-700 mb-4 font-bold hover:text-orange-500 transition">Contact us for a quote</p>
-            <Link href="/contact" className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-700 transition">Send a Quote</Link>
-          </div>
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Image
-                src="/custom-battery-1.jpeg"
-                alt="Custom Battery Image 1"
-                width={250}
-                height={250}
-                className="rounded-lg object-cover max-w-full h-auto"
-              />
-              <Image
-                src="/custom-battery-2.jpeg"
-                alt="Custom Battery Image 2"
-                width={250}
-                height={250}
-                className="rounded-lg object-cover max-w-full h-auto"
-              />
-            </div>
-          </div>
+      {/* Page top: one banner, type over the photograph. */}
+      <section className="relative flex min-h-[52vh] items-end overflow-hidden pt-24 md:min-h-[58vh]">
+        <Image
+          src="/StoreDot.jpg"
+          alt="Lithium-ion cells on the assembly bench"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/25" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 md:px-12 md:pb-16 lg:px-8">
+          <h1
+            className={`${syne.className} max-w-3xl text-4xl font-bold leading-[1.25] pb-[0.18em] tracking-tight text-white sm:text-5xl lg:text-6xl`}
+          >
+            Explore our battery solutions
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-200">
+            Power for the vehicles, homes and businesses we work with, priced
+            openly and serviced in India.
+          </p>
         </div>
       </section>
 
-      {/* Footer */}
-    </div>
+      {/* Tabbed browser: pick a category, see one product at a time. */}
+      <SolutionTabs solutions={solutions} fontClass={syne.className} />
+
+      {/* Swap station partnership. Photographic band, distinct family. */}
+      <section className="relative overflow-hidden px-5 py-24 md:px-12 md:py-28 lg:px-8">
+        <Image
+          src="/swap-station.jpg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-slate-950/80" />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <Reveal className="max-w-2xl">
+            <h2
+              className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-white sm:text-4xl`}
+            >
+              Partner with us on a swap station
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-slate-300">
+              Build a network of battery swap stations for quick, efficient
+              exchanges. We help with siting, hardware and ongoing service.
+            </p>
+            <p className="mt-6 text-2xl font-bold text-white">
+              ₹2 Lakh to ₹8 Lakh{" "}
+              <span className="text-base font-medium text-slate-400">
+                per station
+              </span>
+            </p>
+            <Link
+              href="/contact"
+              className="mt-7 inline-flex rounded-lg bg-orange-600 px-7 py-3 font-medium text-white transition-colors hover:bg-orange-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 active:scale-[0.98]"
+            >
+              Partner with us
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+    </>
   );
-};
-
-export default Page;
+}
