@@ -26,8 +26,15 @@ const CLIP_PROBE = () => {
     const text = el.textContent?.trim() ?? "";
     if (!/[gjpqy]/.test(text)) continue;
     const cs = getComputedStyle(el);
-    const lineHeight = parseFloat(cs.lineHeight);
     const fontSize = parseFloat(cs.fontSize);
+    // `line-height: normal` does not resolve to a length, so parseFloat gives
+    // NaN and every comparison below evaluates false, silently passing the
+    // headings most likely to clip (no leading utility, no bottom padding).
+    // Approximate the UA default instead.
+    const rawLineHeight = parseFloat(cs.lineHeight);
+    const lineHeight = Number.isNaN(rawLineHeight)
+      ? fontSize * 1.2
+      : rawLineHeight;
     const padBottom = parseFloat(cs.paddingBottom) || 0;
     // Syne descenders reach ~0.26em below the baseline. Half-leading plus any
     // bottom padding has to cover that, otherwise g/j/p/q/y and the comma get
@@ -56,9 +63,21 @@ const WRAP_PROBE = () => {
     if (cs.display === "inline") continue;
     // Measure the text itself rather than the box: a fixed-height button
     // (h-12) is taller than its line box by design and is not wrapping.
+    // getClientRects returns one rect per inline box, so a link containing
+    // text plus an icon yields several rects on a single visual line, and
+    // baseline alignment can offset them by a pixel. Cluster rects whose
+    // tops fall within half a line height of each other.
     const range = document.createRange();
     range.selectNodeContents(el);
-    const lines = range.getClientRects().length;
+    const fontSize = parseFloat(cs.fontSize);
+    const tolerance = fontSize * 0.5;
+    const tops = [...range.getClientRects()]
+      .map((r) => r.top)
+      .sort((a, b) => a - b);
+    let lines = tops.length ? 1 : 0;
+    for (let i = 1; i < tops.length; i += 1) {
+      if (tops[i] - tops[i - 1] > tolerance) lines += 1;
+    }
     if (lines > 1) out.push(text.slice(0, 40));
   }
   return out;

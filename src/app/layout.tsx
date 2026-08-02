@@ -51,7 +51,10 @@ const organizationSchema = {
     "Humaya Power extends the lifecycle of Li-ion batteries, supplying EV batteries, storage, rentals, custom packs and battery swap stations across India.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "E-153, Gali No. 2, Chand Bagh, New Mustafabad",
+    // Operational address, matching the Google Business Profile and the map
+    // pin. The registered office is a different address and stays in the
+    // Terms page, where it is legally required.
+    streetAddress: "First Floor, 25/1, Ambedkar Colony, Jeewanpur, Jawahar Nagar",
     addressLocality: "New Delhi",
     addressRegion: "Delhi",
     postalCode: "110094",
@@ -87,14 +90,24 @@ export default function RootLayout({
             __html: JSON.stringify(organizationSchema),
           }}
         />
+        {/* Skip link sits below the navbar's z-50 on purpose. The mobile nav
+            panel carries no z-index of its own and depends on document order,
+            so anything stacked above the header competes with it. */}
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900 focus:outline-2 focus:outline-orange-600"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-40 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900 focus:outline-2 focus:outline-orange-600"
         >
           Skip to content
         </a>
         <Navbar />
-        <main id="main">{children}</main>
+        {/* Children render unwrapped, matching the pre-redesign structure. A
+            <main> wrapper introduced a containing block the mobile nav panel
+            relied on not existing. `display: contents` was tried as a fix and
+            reverted: it removes the element from the box tree, which is a
+            standing hazard for any sticky descendant. The landmark is a
+            zero-height anchor so the skip link keeps a target. */}
+        <div id="main" />
+        {children}
         <Footer />
       </body>
     </html>

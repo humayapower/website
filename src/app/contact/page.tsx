@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { syne } from "../font";
 import ContactForm from "@/components/contact/contact-form";
+import SlowZoom from "@/components/motion/slow-zoom";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -19,17 +21,27 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* Page top: compact, no image, so the form sits near the fold. The
-          short measure and centred alignment distinguish it from the wide
-          type-led about top and the split solutions top. */}
-      <section className="bg-slate-950 px-5 pb-14 pt-28 md:px-12 md:pb-16 md:pt-24 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+      {/* Page top: photographic banner, type over the image. Shorter than a
+          full-height hero so the form still sits close to the fold. */}
+      <section className="relative flex min-h-[46vh] items-end overflow-hidden pt-24 md:min-h-[50vh]">
+        <SlowZoom className="absolute inset-0">
+          <Image
+            src="/background2.jpg"
+            alt="A technician soldering cell connections on a lithium-ion battery pack at the Humaya Power workbench"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </SlowZoom>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/25" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 md:px-12 md:pb-16 lg:px-8">
           <h1
             className={`${syne.className} max-w-2xl text-4xl font-bold leading-[1.25] pb-[0.18em] tracking-tight text-white sm:text-5xl`}
           >
             Let&apos;s connect
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-200">
             Tell us what you need and we will come back with options and
             pricing.
           </p>
@@ -64,8 +76,8 @@ export default function ContactPage() {
                     aria-hidden="true"
                   />
                   <address className="not-italic leading-relaxed text-slate-700">
-                    E-153, Gali No. 2, Chand Bagh, New Mustafabad, New Delhi,
-                    Delhi, 110094
+                    First Floor, 25/1, Ambedkar Colony, Jeewanpur, Jawahar
+                    Nagar, New Delhi, Delhi, 110094
                   </address>
                 </li>
                 <li className="flex gap-4">
@@ -96,10 +108,13 @@ export default function ContactPage() {
                 </li>
               </ul>
 
+              {/* The `1d` parameter in the embed URL is the viewport span in
+                  metres. It was 13997, which framed the whole neighbourhood
+                  rather than the unit. */}
               <div className="overflow-hidden rounded-2xl border border-slate-200">
                 <iframe
-                  title="Humaya Power location on Google Maps"
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13997.934401935903!2d77.2676032!3d28.7050902!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd3aef2a99e3%3A0xc399e40fcdf3391b!2sHumaya%20Power!5e0!3m2!1sen!2sin!4v1725256686545!5m2!1sen!2sin"
+                  title="Humaya Power manufacturing facility location on Google Maps"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1750!2d77.2676032!3d28.7050902!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd3aef2a99e3%3A0xc399e40fcdf3391b!2sHumaya%20Power!5e0!3m2!1sen!2sin!4v1725256686545!5m2!1sen!2sin"
                   width="100%"
                   height="320"
                   loading="lazy"

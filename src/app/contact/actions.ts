@@ -35,7 +35,6 @@ export async function submitContact(
 
   // TODO: wire a real delivery channel here. The shape below is what any
   // provider needs (Resend, Formspree, Web3Forms, SMTP, a CRM webhook).
-  // Until this is connected, submissions are logged server-side only.
   //
   //   await resend.emails.send({
   //     from: "site@humayapower.in",
@@ -44,17 +43,19 @@ export async function submitContact(
   //     subject: `Enquiry from ${name}${company ? ` (${company})` : ""}`,
   //     text: [enquiry, quantity, message].filter(Boolean).join("\n\n"),
   //   });
-  console.info("[contact] submission", {
-    name,
-    email,
-    company,
-    enquiry,
-    quantity,
-    message,
-  });
 
+  // Operational signal only, so the volume of attempts is visible while
+  // delivery is unwired. Nothing a visitor typed goes into the logs: no name,
+  // email, company, quantity, message, or selected enquiry type.
+  console.info("[contact] submission attempt");
+
+  // No delivery channel is wired up yet, so nothing has reached the business.
+  // Reporting success here would tell visitors their message arrived and
+  // replace the form, leaving them no way to retry. Fail honestly and point
+  // them at the phone number and email address instead.
   return {
-    status: "success",
-    message: "Thanks, we have your message. We usually reply within two working days.",
+    status: "error",
+    message:
+      "Online submissions are not connected yet. Please email info@humayapower.in or call (+91) 729-1000-560 and we will pick it up right away.",
   };
 }

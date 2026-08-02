@@ -2,24 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { syne } from "./font";
 import Reveal from "@/components/motion/reveal";
+import { impactStats } from "@/data/impact";
 
-const stats = [
-  {
-    figure: "1,000,000+",
-    unit: "km",
-    label: "driven on our remanufactured Li-ion packs",
-  },
-  {
-    figure: "10+",
-    unit: "cities",
-    label: "reached across India",
-  },
-  {
-    figure: "5",
-    unit: "stations",
-    label: "swap partners live today",
-  },
-];
 
 export default function Home() {
   return (
@@ -29,7 +13,7 @@ export default function Home() {
       <section className="relative flex min-h-[100dvh] items-center overflow-hidden">
         <Image
           src="/background2.jpg"
-          alt="Humaya Power battery swap station at dusk"
+          alt="A technician soldering cell connections on a lithium-ion battery pack at the Humaya Power workbench"
           fill
           priority
           sizes="100vw"
@@ -101,7 +85,7 @@ export default function Home() {
             </p>
           </Reveal>
           <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-slate-200 sm:grid-cols-2 lg:grid-cols-3">
-            {stats.map((stat, i) => (
+            {impactStats.map((stat, i) => (
               <Reveal
                 key={stat.figure}
                 delay={i * 0.08}

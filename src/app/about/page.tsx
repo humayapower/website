@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { syne } from "../font";
 import Reveal from "@/components/motion/reveal";
+import { impactStats } from "@/data/impact";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -18,16 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-const impact = [
-  {
-    figure: "1,000,000+",
-    unit: "km",
-    label: "driven on our remanufactured Li-ion packs",
-  },
-  { figure: "10+", unit: "cities", label: "reached across India" },
-  { figure: "5", unit: "stations", label: "swap partners live today" },
-];
-
 export default function AboutUs() {
   return (
     <>
@@ -37,7 +28,7 @@ export default function AboutUs() {
       <section className="relative flex min-h-[52vh] items-end overflow-hidden pt-24 md:min-h-[58vh]">
         <Image
           src="/background2.jpg"
-          alt="Lithium-ion cells being tested on the Humaya Power workbench"
+          alt="A technician soldering cell connections on a lithium-ion battery pack at the Humaya Power workbench"
           fill
           priority
           sizes="100vw"
@@ -131,12 +122,12 @@ export default function AboutUs() {
               </div>
             </div>
 
-            <div className="rounded-2xl bg-orange-600 p-8 md:p-10 lg:col-span-6">
+            <div className="rounded-2xl bg-orange-800 p-8 md:p-10 lg:col-span-6">
               <p className="text-sm font-medium uppercase tracking-[0.14em] text-orange-100">
                 Driving change, one battery at a time
               </p>
               <dl className="mt-8 space-y-8">
-                {impact.map((item) => (
+                {impactStats.map((item) => (
                   <div
                     key={item.figure}
                     className="border-t border-white/25 pt-6"
