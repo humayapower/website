@@ -1,8 +1,8 @@
 "use client";
 
-import { submitContact, type ContactState } from "@/app/contact/actions";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import { type ContactState, submitContact } from "@/app/contact/actions";
 
 const initialState: ContactState = { status: "idle" };
 
@@ -28,10 +28,7 @@ export default function ContactForm() {
 
   if (state.status === "success") {
     return (
-      <div
-        role="status"
-        className="rounded-2xl border border-orange-200 bg-orange-50 p-8"
-      >
+      <output className="block rounded-2xl border border-orange-200 bg-orange-50 p-8">
         <h2 className="text-xl font-bold text-slate-900">Message sent</h2>
         <p className="mt-3 leading-relaxed text-slate-700">{state.message}</p>
         <p className="mt-6 text-sm text-slate-600">
@@ -44,7 +41,7 @@ export default function ContactForm() {
           </a>
           .
         </p>
-      </div>
+      </output>
     );
   }
 

@@ -1,7 +1,7 @@
-import Reveal from "@/components/motion/reveal";
-import { impactStats } from "@/data/impact";
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/components/motion/reveal";
+import { impactStats } from "@/data/impact";
 import { syne } from "./font";
 
 export default function Home() {

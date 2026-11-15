@@ -1,8 +1,8 @@
-import ContactForm from "@/components/contact/contact-form";
-import SlowZoom from "@/components/motion/slow-zoom";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import ContactForm from "@/components/contact/contact-form";
+import SlowZoom from "@/components/motion/slow-zoom";
 import { syne } from "../font";
 
 export const metadata: Metadata = {

@@ -1,8 +1,8 @@
-import Reveal from "@/components/motion/reveal";
-import SolutionTabs from "@/components/solutions/solution-tabs";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/components/motion/reveal";
+import SolutionTabs from "@/components/solutions/solution-tabs";
 import { syne } from "../font";
 import { solutions } from "./data";
 
@@ -58,6 +58,7 @@ export default function SolutionsPage() {
     <>
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD built from static site data, no user input
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
 

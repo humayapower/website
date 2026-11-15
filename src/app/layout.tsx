@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
-import type { Metadata } from "next";
 import { roboto, syne } from "./font";
 import "./globals.css";
 
@@ -88,6 +88,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD built from static site data, no user input
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
           }}
