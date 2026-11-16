@@ -1,16 +1,22 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { FaCheck } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
+import { whatsappUrl } from "@/data/contact";
 
 export type Solution = {
   id: string;
-  name: string;
+  /** Key for /contact?interest=, see interestOptions. */
+  interest: string;
   tabLabel: string;
+  name: string;
   description: string;
   features: string[];
+  specs: [string, string][];
+  priceLabel?: string;
   price: string;
   priceSuffix?: string;
   image: string;
@@ -21,10 +27,11 @@ export type Solution = {
 };
 
 /**
- * Tabbed solution browser. Adapted from the hmp-try1 reference, with three
- * changes: the panel is conditionally rendered rather than CSS-hidden, so only
- * the active product's images load; tabs are real ARIA tabs; and the decorative
- * floating blobs and gradient text from the reference are dropped.
+ * Product browser. All four products are visible as cards at once, the
+ * selected one opens below. The selection lives in the URL hash, so
+ * /solutions#rentals can be linked from the home page, the footer or an ad.
+ * The panel is conditionally rendered so only the active product's large
+ * images load.
  */
 export default function SolutionTabs({
   solutions,
@@ -34,84 +41,118 @@ export default function SolutionTabs({
   fontClass: string;
 }) {
   const [active, setActive] = useState(solutions[0].id);
+  const reduce = useReducedMotion();
   const current = solutions.find((s) => s.id === active) ?? solutions[0];
 
+  useEffect(() => {
+    const read = (scroll: boolean) => {
+      const id = window.location.hash.slice(1);
+      if (!solutions.some((s) => s.id === id)) return;
+      setActive(id);
+      if (scroll) {
+        document
+          .getElementById("solution-tabs")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    read(true);
+    const onHash = () => read(true);
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, [solutions]);
+
+  const select = (id: string) => {
+    setActive(id);
+    window.history.replaceState(null, "", `#${id}`);
+  };
+
   return (
-    <>
-      {/* Not sticky. The header auto-hides on scroll, so a bar pinned to a
-          fixed offset either floated over the panel or left a dead gap once
-          the header retracted. The tab set is short and sits directly under
-          the banner, so it does not need to follow the reader. */}
-      <div className="border-b border-slate-200 bg-white">
-        {/* Two columns on mobile rather than a horizontal scroller. The strip
-            needed 518px inside a 390px viewport, so the last tab sat
-            off-screen with no affordance, and inside a scroll container the
-            browser delays each touch to decide tap-vs-swipe, which loses the
-            tap whenever a finger moves slightly. */}
+    <section
+      id="solution-tabs"
+      className="scroll-mt-20 bg-white px-5 py-14 md:px-12 md:py-20 lg:px-8"
+    >
+      <div className="mx-auto max-w-7xl">
         <div
           role="tablist"
           aria-label="Battery solutions"
-          className="mx-auto grid max-w-7xl grid-cols-2 gap-2 px-5 py-3 sm:flex sm:flex-wrap sm:justify-center md:px-12 lg:px-8"
+          className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4"
         >
-          {solutions.map((solution) => {
-            const selected = solution.id === active;
+          {solutions.map((s) => {
+            const selected = s.id === active;
             return (
-              <button
-                key={solution.id}
+              <motion.button
+                key={s.id}
                 role="tab"
                 type="button"
-                id={`tab-${solution.id}`}
+                id={`tab-${s.id}`}
                 aria-selected={selected}
-                aria-controls={`panel-${solution.id}`}
-                onClick={() => setActive(solution.id)}
-                className={`touch-manipulation rounded-lg px-4 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 sm:py-2 ${
+                aria-controls={`panel-${s.id}`}
+                onClick={() => select(s.id)}
+                whileHover={reduce ? undefined : { y: -3 }}
+                whileTap={reduce ? undefined : { scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                className={`touch-manipulation overflow-hidden rounded-2xl border bg-white text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 ${
                   selected
-                    ? "bg-orange-600 text-white"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 sm:bg-transparent sm:hover:bg-slate-100"
+                    ? "border-orange-600 ring-2 ring-orange-600"
+                    : "border-slate-200 hover:border-orange-400"
                 }`}
               >
-                {solution.tabLabel}
-              </button>
+                <span className="relative block aspect-[16/10] bg-slate-100">
+                  <Image
+                    src={s.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                </span>
+                <span className="block p-4">
+                  <span
+                    className={`${fontClass} block text-base font-bold text-slate-900`}
+                  >
+                    {s.tabLabel}
+                  </span>
+                  <span className="mt-1 block text-sm text-slate-600">
+                    {s.priceLabel ? `${s.priceLabel} ` : ""}
+                    <span className="font-semibold text-slate-900">
+                      {s.price}
+                    </span>
+                    {s.priceSuffix}
+                  </span>
+                </span>
+              </motion.button>
             );
           })}
         </div>
-      </div>
 
-      <section className="bg-white px-5 py-16 md:px-12 md:py-24 lg:px-8">
-        <div
-          role="tabpanel"
-          id={`panel-${current.id}`}
-          aria-labelledby={`tab-${current.id}`}
-          className="mx-auto max-w-7xl"
-        >
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={current.id}
+            role="tabpanel"
+            id={`panel-${current.id}`}
+            aria-labelledby={`tab-${current.id}`}
+            initial={reduce ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduce ? undefined : { opacity: 0, y: -8 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-12 grid items-start gap-12 lg:grid-cols-2 lg:gap-16"
+          >
             <div>
               <h2
-                className={`${fontClass} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-slate-900 sm:text-4xl`}
+                className={`${fontClass} pb-[0.16em] text-3xl font-bold leading-[1.3] tracking-tight text-slate-900 sm:text-4xl`}
               >
                 {current.name}
               </h2>
-              <p className="mt-5 text-lg leading-relaxed text-slate-600">
+              <p className="mt-4 text-lg leading-relaxed text-slate-600">
                 {current.description}
               </p>
 
-              <ul className="mt-7 space-y-3">
-                {current.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-center gap-3 text-slate-700"
-                  >
-                    <FaCheck
-                      className="shrink-0 text-orange-600"
-                      size={13}
-                      aria-hidden="true"
-                    />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <p className="mt-8 text-2xl font-bold text-slate-900">
+              <p className="mt-7 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-3xl font-bold text-slate-900">
+                {current.priceLabel ? (
+                  <span className="mr-2 text-base font-medium text-slate-500">
+                    {current.priceLabel}
+                  </span>
+                ) : null}
                 {current.price}
                 {current.priceSuffix ? (
                   <span className="text-base font-medium text-slate-500">
@@ -120,12 +161,37 @@ export default function SolutionTabs({
                 ) : null}
               </p>
 
-              <Link
-                href="/contact"
-                className="mt-7 inline-flex rounded-lg bg-orange-600 px-7 py-3 font-medium text-white transition-colors hover:bg-orange-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 active:scale-[0.98]"
-              >
-                {current.cta}
-              </Link>
+              <dl className="mt-4">
+                {current.specs.map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="flex gap-6 border-b border-slate-200 py-3"
+                  >
+                    <dt className="w-2/5 shrink-0 text-slate-500">{label}</dt>
+                    <dd className="text-slate-800">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link
+                  href={`/contact?interest=${current.interest}`}
+                  className="inline-flex items-center justify-center rounded-lg bg-orange-600 px-7 py-3 font-medium text-white transition-colors hover:bg-orange-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 active:scale-[0.98]"
+                >
+                  {current.cta}
+                </Link>
+                <a
+                  href={whatsappUrl(
+                    `Hi Humaya Power, I am interested in ${current.name}.`,
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-6 py-3 font-medium text-slate-800 transition-colors hover:border-emerald-700 hover:text-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 active:scale-[0.98]"
+                >
+                  <FaWhatsapp aria-hidden="true" size={18} />
+                  WhatsApp us
+                </a>
+              </div>
             </div>
 
             {current.secondaryImage ? (
@@ -160,9 +226,9 @@ export default function SolutionTabs({
                 />
               </div>
             )}
-          </div>
-        </div>
-      </section>
-    </>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
   );
 }

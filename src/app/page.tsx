@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CtaPaths } from "@/components/cta/cta-banner";
 import Reveal from "@/components/motion/reveal";
+import SlowZoom from "@/components/motion/slow-zoom";
 import { impactStats } from "@/data/impact";
 import { syne } from "./font";
 
@@ -10,15 +12,21 @@ export default function Home() {
       {/* Hero. Preserved composition: centred type over the original photograph.
           Now served through next/image so it is a real LCP candidate. */}
       <section className="relative flex min-h-[100dvh] items-center overflow-hidden">
-        <Image
-          src="/background2.jpg"
-          alt="A technician soldering cell connections on a lithium-ion battery pack at the Humaya Power workbench"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+        <SlowZoom className="absolute inset-0">
+          <Image
+            src="/background2.jpg"
+            alt="A technician soldering cell connections on a lithium-ion battery pack at the Humaya Power workbench"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </SlowZoom>
         <div className="absolute inset-0 bg-slate-950/55" />
+        {/* Fades the photograph into the slate-900 section below. A flat
+            overlay leaves the image bottom visibly lighter than the section,
+            which read as a hard grey seam on wide screens. */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-slate-900/70 to-slate-900 md:h-56 lg:h-72" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pt-24 sm:px-10 lg:px-8">
           <div className="flex flex-col items-center space-y-8 text-center">
             <h1
@@ -110,27 +118,7 @@ export default function Home() {
       {/* Closing call to action. */}
       <section className="bg-slate-50 px-5 py-16 md:px-12 md:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <Reveal className="grid items-center gap-10 rounded-2xl bg-slate-900 px-8 py-14 md:px-14 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
-              <h2
-                className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-white sm:text-4xl`}
-              >
-                Ready to power your future with sustainable energy?
-              </h2>
-              <p className="mt-5 max-w-xl text-lg text-slate-300">
-                Whether you want to buy, rent, or partner on a swap station,
-                tell us what you need and we will come back with options.
-              </p>
-            </div>
-            <div className="lg:col-span-5 lg:justify-self-end">
-              <Link
-                href="/contact"
-                className="inline-flex rounded-lg bg-orange-600 px-7 py-3 font-medium text-white transition-colors hover:bg-orange-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 active:scale-[0.98]"
-              >
-                Get in touch
-              </Link>
-            </div>
-          </Reveal>
+          <CtaPaths />
         </div>
       </section>
     </>

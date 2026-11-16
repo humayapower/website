@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { CtaSlim } from "@/components/cta/cta-banner";
 import Reveal from "@/components/motion/reveal";
 import { impactStats } from "@/data/impact";
 import { syne } from "../font";
@@ -190,27 +190,14 @@ export default function AboutUs() {
       {/* Closing call to action. */}
       <section className="bg-white px-5 pb-24 md:px-12 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <Reveal className="grid items-center gap-10 rounded-2xl bg-slate-900 px-8 py-14 md:px-14 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
-              <h2
-                className={`${syne.className} text-3xl font-bold leading-[1.3] pb-[0.16em] tracking-tight text-white sm:text-4xl`}
-              >
-                Ready to power your future with sustainable energy?
-              </h2>
-              <p className="mt-5 max-w-xl text-lg text-slate-300">
-                Whether you want to buy, rent, or partner on a swap station,
-                tell us what you need and we will come back with options.
-              </p>
-            </div>
-            <div className="lg:col-span-5 lg:justify-self-end">
-              <Link
-                href="/contact"
-                className="inline-flex rounded-lg bg-orange-600 px-7 py-3 font-medium text-white transition-colors hover:bg-orange-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 active:scale-[0.98]"
-              >
-                Get in touch
-              </Link>
-            </div>
-          </Reveal>
+          <CtaSlim
+            title="Want to see what Humaya Power can do for you?"
+            body="Browse the range, or tell us what you need and we will come back with options."
+            primaryHref="/solutions"
+            primaryLabel="See our solutions"
+            secondaryHref="/contact"
+            secondaryLabel="Get in touch"
+          />
         </div>
       </section>
     </>

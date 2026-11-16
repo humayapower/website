@@ -1,8 +1,10 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { type ContactState, submitContact } from "@/app/contact/actions";
+import { interestOptions } from "@/data/contact";
 
 const initialState: ContactState = { status: "idle" };
 
@@ -25,6 +27,9 @@ function SubmitButton() {
 
 export default function ContactForm() {
   const [state, formAction] = useActionState(submitContact, initialState);
+  // /contact?interest=rental pre-selects the dropdown.
+  const interest = useSearchParams().get("interest");
+  const defaultEnquiry = (interest && interestOptions[interest]) || "";
 
   if (state.status === "success") {
     return (
@@ -135,7 +140,7 @@ export default function ContactForm() {
           <select
             id="enquiry"
             name="enquiry"
-            defaultValue=""
+            defaultValue={defaultEnquiry}
             className={fieldClass}
           >
             <option value="">Select an option</option>
