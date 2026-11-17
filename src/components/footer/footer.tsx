@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { syne } from "@/app/font";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import {
   ADDRESS,
   EMAIL,
@@ -23,38 +22,7 @@ const FooterBlock = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-950 text-sm text-slate-400">
-      {/* Final nudge for readers who reach the bottom without converting. */}
-      <div className="bg-gradient-to-r from-orange-900 to-orange-700 px-5 py-9 text-white md:px-12 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className={`${syne.className} text-xl font-bold`}>
-              Need a quote?
-            </p>
-            <p className="mt-1 text-orange-100">
-              Call or message us and we will come back with options.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-lg bg-white px-6 py-2.5 font-medium text-orange-800 transition-colors hover:bg-orange-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98]"
-            >
-              Get in touch
-            </Link>
-            <a
-              href={whatsappUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/40 px-5 py-2.5 font-medium text-white transition-colors hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98]"
-            >
-              <FaWhatsapp aria-hidden="true" size={18} />
-              WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
-
+    <footer className="border-t border-white/10 bg-slate-950 text-sm text-slate-400">
       <div className="px-5 md:px-12 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1.4fr]">

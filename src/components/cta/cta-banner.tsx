@@ -159,7 +159,7 @@ export function CtaSplit({
   label: string;
 }) {
   return (
-    <section className="bg-slate-950 text-white">
+    <section className="bg-slate-950 pb-10 text-white lg:pb-14">
       <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
         <div className="relative min-h-[260px] lg:min-h-[440px]">
           <Image
