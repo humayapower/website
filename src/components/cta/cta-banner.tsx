@@ -159,9 +159,9 @@ export function CtaSplit({
   label: string;
 }) {
   return (
-    <section className="bg-slate-950 pb-10 text-white lg:pb-14">
-      <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
-        <div className="relative min-h-[260px] lg:min-h-[440px]">
+    <section className="bg-white py-12 text-slate-900 lg:py-20">
+      <div className="mx-auto grid max-w-7xl lg:grid-cols-2 lg:px-8">
+        <div className="relative mx-5 min-h-65 overflow-hidden rounded-2xl md:mx-12 lg:mx-0 lg:min-h-110">
           <Image
             src={image}
             alt={alt}
@@ -176,11 +176,11 @@ export function CtaSplit({
           >
             {title}
           </h2>
-          <p className="text-lg leading-relaxed text-slate-300">{body}</p>
-          <ul className="grid gap-2 text-slate-300">
+          <p className="text-lg leading-relaxed text-slate-600">{body}</p>
+          <ul className="grid gap-2 text-slate-700">
             {points.map((p) => (
               <li key={p} className="flex items-center gap-3">
-                <span aria-hidden="true" className="font-bold text-orange-400">
+                <span aria-hidden="true" className="font-bold text-orange-600">
                   ✓
                 </span>
                 {p}
@@ -189,7 +189,7 @@ export function CtaSplit({
           </ul>
           <p className="mt-2 text-2xl font-bold">
             {price}{" "}
-            <span className="text-base font-medium text-slate-400">
+            <span className="text-base font-medium text-slate-500">
               {priceNote}
             </span>
           </p>
